@@ -64,8 +64,7 @@ class DecisionTreeNode:
             node.getNodeInfo()
 
     def setIncludeSample(self, include_sample_lists):
-
-
+        pass
 
     def saveDecisionTreeToFile(self, filename="DecisionTree.txt"):
         pass

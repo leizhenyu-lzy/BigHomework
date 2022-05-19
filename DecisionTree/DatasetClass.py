@@ -23,10 +23,13 @@ class Dataset:
         self.features = []  # 数据集的全部样本特征数据
         self.features_continuity = []  # 连续特征标记
 
+        self.labels = []
         self.label_name = ""  # 标签索引名称
 
         self.features_possible_values = []  # 各个特征的全部可能的特征值，列表内嵌字典
         self.labels_possible_values = {}  # 标签的可能值（字典）
+
+        self.available_features_number = []
 
     # 读取数据集
     def readDataset(self, header=0, index_col=None):
@@ -43,6 +46,8 @@ class Dataset:
         dataset_index_name = data_frame.columns.values  # 取得数据各项索引名称
         self.features_name = dataset_index_name[0:-1]
         self.label_name = dataset_index_name[-1]
+
+        self.available_features_number = [i for i in range(self.features_number)]  # 还没有被决策树用到的特征编号
 
     # 打印数据集信息
     def printDatasetInfo(self):
@@ -63,6 +68,8 @@ class Dataset:
 
         print("features_possible_values:\n", self.features_possible_values, "\n")
         print("labels_possible_values:\n", self.labels_possible_values, "\n")
+
+        print("label_name:\n", self.label_name, "\n")
 
         user.printSeparateBar()
 
@@ -103,7 +110,7 @@ class Dataset:
 
     # 统计给定编号的数据的标签值的种类及其个数
     def countLabelsPossibleValuesByList(self, sample_list):
-        label_possible_values = {}
+        label_possible_values = {}  # 字典形式
         for label_value in self.labels_possible_values:
             label_possible_values[label_value] = 0
         for sample_number in sample_list:
@@ -114,12 +121,16 @@ class Dataset:
     def judgeFeaturesContinuity(self):
         pass
 
+    # 高级初始化
+    def comprehensiveInitializeDataset(self):
+        self.readDataset()
+        self.countFeaturesPossibleValues()
+        self.countLabelsPossibleValues()
+
 
 if __name__ == "__main__":
     melon_dataset = Dataset(dataset_path=user.MelonDatasetPath, dataset_name="MelonDataset")
-    melon_dataset.readDataset()
-    melon_dataset.countFeaturesPossibleValues()
-    melon_dataset.countLabelsPossibleValues()
+    melon_dataset.comprehensiveInitializeDataset()
     # melon_dataset.printDatasetInfo()
 
 

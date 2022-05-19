@@ -1,7 +1,14 @@
 # 1950083 自动化 刘智宇
+
+# Thirdparty
+import numpy as np
 import pandas as pd
-import os.path
-import math
+
+# USer
+import UserToolFunction as user
+import DivisionChoiceFunction as DCF
+from DecisionTreeNodeClass import DecisionTreeNode
+from DatasetClass import Dataset
 
 """
 函数名称：
@@ -11,9 +18,24 @@ import math
 """
 
 if __name__ == "__main__":
-    l = []
-    z = None
-    print(z is None)
+    melon_dataset = Dataset(dataset_path=user.MelonDatasetPath, dataset_name="MelonDataset")
+    melon_dataset.comprehensiveInitializeDataset()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     # filename = os.path.join("Datasets", "IncompleteDataset.txt")
     # df = pd.read_csv(filename, header=None, index_col=None)

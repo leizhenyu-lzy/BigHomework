@@ -5,6 +5,7 @@ import math
 
 # User
 # import DatasetFunction
+from DatasetClass import Dataset
 
 """
 函数名称：pLog2p
@@ -23,9 +24,10 @@ def pLog2p(possibility):
 函数输入：
 函数返回：
 """
-def computeInformationEntropy(dataset, sample_list, division_feature_number):
-
-
+def computeInformationEntropy(dataset, sample_list=None):
+    label_values_dict = dataset.countLabelsPossibleValuesByList(sample_list)
+    print(label_values_dict)
+    return 0
 
 
 
@@ -65,10 +67,5 @@ def computeOneFeatureGainRatio():
 
 
 if __name__ == "__main__":
-    # melon_dataset, melon_index = DatasetFunction.readDataset()
-    # melon_properties, melon_label = DatasetFunction.separateDataLabel(melon_dataset)
-    # all_all = DatasetFunction.getAllPropertiesAllValues(melon_properties)
-    # # getEntropyGain(melon_dataset, 5)
-    # print(len(all_all[5]))
+    pass
 
-    print(plog2p(0.5))
