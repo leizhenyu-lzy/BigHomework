@@ -20,6 +20,7 @@ from DatasetClass import Dataset
 if __name__ == "__main__":
     melon_dataset = Dataset(dataset_path=user.MelonDatasetPath, dataset_name="MelonDataset")
     melon_dataset.comprehensiveInitializeDataset()
+    DCF.computeInformationEntropy(melon_dataset)  # , [i for i in range(1, 10)])
 
 
 
@@ -50,3 +51,4 @@ if __name__ == "__main__":
     #         if not pd.isna(element):
     #             counter = counter+1
     #     print(counter)
+

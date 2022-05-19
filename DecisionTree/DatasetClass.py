@@ -109,12 +109,17 @@ class Dataset:
                 self.labels_possible_values[temp_label_value] = 1
 
     # 统计给定编号的数据的标签值的种类及其个数
-    def countLabelsPossibleValuesByList(self, sample_list):
+    def countLabelsPossibleValuesByList(self, sample_list=None):
+        if sample_list is None:
+            sample_list = [cnt for cnt in range(self.samples_amount)]
         label_possible_values = {}  # 字典形式
         for label_value in self.labels_possible_values:
             label_possible_values[label_value] = 0
         for sample_number in sample_list:
-            label_possible_values[self.labels[sample_number]] +=1
+            label_possible_values[self.labels[sample_number]] += 1
+        for label_value in self.labels_possible_values:
+            if label_possible_values[label_value] == 0:
+                label_possible_values.pop(label_value)
         return label_possible_values
 
     # 判断特征的连续性

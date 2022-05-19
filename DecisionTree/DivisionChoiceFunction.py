@@ -19,15 +19,28 @@ def pLog2p(possibility):
 
 
 """
-函数名称：
-函数作用：
+函数名称：computeInformationEntropy
+函数作用：给定数据集和样本列表，归类并计算
 函数输入：
 函数返回：
 """
 def computeInformationEntropy(dataset, sample_list=None):
-    label_values_dict = dataset.countLabelsPossibleValuesByList(sample_list)
-    print(label_values_dict)
-    return 0
+    information_entropy = 0.0  # 信息熵
+    label_values_dict = dataset.countLabelsPossibleValuesByList(sample_list)  # 统计标签值的字典
+
+    # 得到sample_list长度
+    if sample_list is None:
+        sum_label_values_number = dataset.samples_amount
+    else:
+        sum_label_values_number = len(sample_list)
+
+    label_values_varity = len(label_values_dict)  # 标签值的类别数
+
+    for cnt in range(label_values_varity):
+        possibility = 0.0 + list(label_values_dict.values())[cnt]/sum_label_values_number
+        information_entropy -= pLog2p(possibility)
+    # print(information_entropy)
+    return information_entropy
 
 
 
