@@ -20,35 +20,14 @@ from DatasetClass import Dataset
 if __name__ == "__main__":
     melon_dataset = Dataset(dataset_path=user.MelonDatasetPath, dataset_name="MelonDataset")
     melon_dataset.comprehensiveInitializeDataset()
-    DCF.computeInformationEntropy(melon_dataset)  # , [i for i in range(1, 10)])
+    melon_dataset.printDatasetInfo()
+    # melon_dataset.showFeaturesPossibleValues()
+
+    feature_number = melon_dataset.getDivisionFeatureByEntropyGain()
+
+    melon_dataset.judgeSamplesSameCategory([0 for i in range(5)])
+
+    # melon_dataset.splitSamplesList(0)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # filename = os.path.join("Datasets", "IncompleteDataset.txt")
-    # df = pd.read_csv(filename, header=None, index_col=None)
-    # dfv = df.values
-    # print(dfv)
-    # rows, cols = dfv.shape
-    # # print(len(dfv[1]))
-    # for row in range(rows):
-    #     counter = 0
-    #     for col in range(cols):
-    #         element = dfv[row, col]
-    #         if not pd.isna(element):
-    #             counter = counter+1
-    #     print(counter)
 

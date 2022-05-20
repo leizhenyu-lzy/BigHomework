@@ -5,6 +5,10 @@ import os.path
 DatasetsFolder = "Datasets"
 MelonDatasetPath = os.path.join(DatasetsFolder, "MelonDataset.txt")
 
+success = 1
+failure = 0
+
+
 # 全局变量定义
 node_number = 0
 
