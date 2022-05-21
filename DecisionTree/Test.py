@@ -3,6 +3,7 @@
 # Thirdparty
 import numpy as np
 import pandas as pd
+import math
 
 # USer
 import UserToolFunction as user
@@ -20,14 +21,10 @@ from DatasetClass import Dataset
 if __name__ == "__main__":
     melon_dataset = Dataset(dataset_path=user.MelonDatasetPath, dataset_name="MelonDataset")
     melon_dataset.comprehensiveInitializeDataset()
-    melon_dataset.printDatasetInfo()
-    # melon_dataset.showFeaturesPossibleValues()
+    dictionary = melon_dataset.splitSamplesList(division_feature_id=3)
+    print(melon_dataset.features_possible_values)
 
-    feature_number = melon_dataset.getDivisionFeatureByEntropyGain()
-
-    melon_dataset.judgeSamplesSameCategory([0 for i in range(5)])
-
-    # melon_dataset.splitSamplesList(0)
-
+    entropy_gain = melon_dataset.computeOneFeatureEntropyGain(division_feature_id=5, sample_list=[6, 8, 12, 13, 16])
+    print(entropy_gain)
 
 
