@@ -31,7 +31,7 @@ class Dataset:
         self.features_possible_values = []  # 各个特征的全部可能的特征值，列表内嵌字典
         self.labels_possible_values = {}  # 标签的可能值（字典）
 
-        self.available_features_number_list = []  # not const
+        # self.available_features_number_list = []  # not const
 
     # 高级初始化
     def comprehensiveInitializeDataset(self):
@@ -56,7 +56,7 @@ class Dataset:
         self.features_name = dataset_index_name[0:-1]
         self.label_name = dataset_index_name[-1]
 
-        self.available_features_number_list = [i for i in range(self.features_number)]  # 还没有被决策树用到的特征编号
+        # self.available_features_number_list = [i for i in range(self.features_number)]  # 还没有被决策树用到的特征编号
 
     # 打印数据集信息
     def printDatasetInfo(self):
@@ -169,21 +169,21 @@ class Dataset:
             return user.failure
 
     # 通过给定特征拆分给定样本列表
-    def splitSamplesList(self, division_feature_number, sample_list=None, continuity_split_value=0):
+    def splitSamplesList(self, division_feature_id, sample_list=None, continuity_split_value=0):
         if sample_list is None:  # 没有给定sample_list，就统计所有值
             sample_list = [cnt for cnt in range(self.samples_amount)]
         split_dict = {}
-        if self.features_continuity[division_feature_number]:  # 连续特征
+        if self.features_continuity[division_feature_id]:  # 连续特征
             split_dict['bigger'] = []
             split_dict['smaller'] = []
             # 可能要考虑连续值重复，相等时归给谁
             pass
         else:  # 非连续特征
-            for division_feature_value in list(self.features_possible_values[division_feature_number].keys()):
+            for division_feature_value in list(self.features_possible_values[division_feature_id].keys()):
                 split_dict[division_feature_value] = []
             for sample_number in sample_list:
-                split_dict[self.features[sample_number][division_feature_number]].append(sample_number)
-            for division_feature_value in list(self.features_possible_values[division_feature_number].keys()):  # 避免空的列表返回
+                split_dict[self.features[sample_number][division_feature_id]].append(sample_number)
+            for division_feature_value in list(self.features_possible_values[division_feature_id].keys()):  # 避免空的列表返回
                 if len(split_dict[division_feature_value]) == 0:
                     split_dict.pop(division_feature_value)  # 删除值为空列表的键值对
         return split_dict

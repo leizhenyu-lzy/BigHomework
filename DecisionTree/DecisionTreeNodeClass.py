@@ -15,21 +15,23 @@ import UserToolFunction
 2. 向下遍历
 """
 class DecisionTreeNode:
-    global_node_id = 0
+    global_node_id = 0  # 类共享变量（在有新treenode创建时会自增）
 
     # 定义类变量
     def __init__(self):
-        self.node_id = DecisionTreeNode.global_node_id  # 节点编号
-        self.parentnode = None  # 父节点
-        self.parentnode_id = None  # 父节点编号
-        self.childnodes_list = []  # 子节点列表
-        self.childnodes_id_list = []  # 子节点编号列表
+        self.node_id = DecisionTreeNode.global_node_id  # 节点编号（单个数值）
+        DecisionTreeNode.global_node_id += 1  # 共享变量自增
 
-        self.division_feature_id = None  # 当前节点用于划分子节点的划分特征编号
-        self.childnode_division_feature_value = []  # 子节点对应划分特征的特征值
-        self.include_samples = []  # 当前节点包含的样本编号
-        DecisionTreeNode.global_node_id += 1
-        self.final_label = None  # 对于叶节点，给出归到这里的样本的最终决策结果
+        self.parentnode = None  # 父节点（单个节点）
+        self.parentnode_id = None  # 父节点编号（单个数值）
+        self.childnodes_list = []  # 子节点列表（节点列表）
+        self.childnodes_id_list = []  # 子节点编号列表（数值列表）
+
+        self.division_feature_id = None  # 当前节点用于划分子节点的划分特征编号（单个数值）
+        self.childnode_division_feature_value = []  # 子节点对应划分特征的特征值（字符串列表）
+        self.include_samples = []  # 当前节点包含的样本编号（数值列表）
+        self.available_features_id = []  # 可用的划分特征列表，从父节点的改成员变量删去父节点划分特征所得（数值列表）
+        self.final_label = None  # 对于叶节点，给出归到这里的样本的最终决策结果（标注的实际值）
         # print(self.global_node_id)
 
     # 输出节点信息（节点都用编号表示）
@@ -71,12 +73,15 @@ class DecisionTreeNode:
         queue_pointer = 0
         while queue_pointer < len(node_queue):
             node_queue.extend(node_queue[queue_pointer].childnodes_list)
-            queue_pointer = queue_pointer + 1
+            queue_pointer += 1
         for node in node_queue:
             node.getNodeInfo()
 
     def setIncludeSample(self, include_sample_list):
         self.include_samples = include_sample_list
+
+    def setAvailableFeaturesId(self, available_feature_id_list):
+        self.available_features_id = available_feature_id_list
 
     def saveDecisionTreeToFile(self, filename="DecisionTree.txt"):
         pass
@@ -85,7 +90,7 @@ class DecisionTreeNode:
         pass
 
     # 判断是不是叶子节点
-    def judgeLeafNode(self):
+    def isLeaf(self):
         if len(self.childnodes_id_list):  # 子节点非空
             return True
         else:  # 没有子节点

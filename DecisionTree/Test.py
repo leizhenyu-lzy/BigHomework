@@ -19,12 +19,17 @@ from DatasetClass import Dataset
 """
 
 if __name__ == "__main__":
-    melon_dataset = Dataset(dataset_path=user.MelonDatasetPath, dataset_name="MelonDataset")
-    melon_dataset.comprehensiveInitializeDataset()
-    dictionary = melon_dataset.splitSamplesList(division_feature_id=3)
-    print(melon_dataset.features_possible_values)
+    # melon_dataset = Dataset(dataset_path=user.MelonDatasetPath, dataset_name="MelonDataset")
+    # melon_dataset.comprehensiveInitializeDataset()
+    #
+    # melon_dataset.selectDivisionFeatureByEntropyGain(available_division_feature_list=[])
+    #
+    # print(entropy_gain)
 
-    entropy_gain = melon_dataset.computeOneFeatureEntropyGain(division_feature_id=5, sample_list=[6, 8, 12, 13, 16])
-    print(entropy_gain)
+    l1 = [1,2,3]
+    l2 = l1.copy()
+    l2[0] = 123
+    print(l1)
+    print(l2)
 
 
