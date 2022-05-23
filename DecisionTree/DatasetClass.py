@@ -218,9 +218,9 @@ class Dataset:
         # 对样本列表根据划分特征进行拆分，得到字典（字典中的value为列表）
         split_dict = self.splitSamplesList(division_feature_id, sample_list)
         # 计算拆分后各样本子列表的加权信息熵，并从信息增益中减去
-        for division_feature_value in split_dict:
-            sub_information_entropy = self.computeInformationEntropy(split_dict[division_feature_value])
-            sub_information_entropy_weight = len(split_dict[division_feature_value])/len(sample_list)
+        for division_feature_id in split_dict:
+            sub_information_entropy = self.computeInformationEntropy(split_dict[division_feature_id])  # 计算划分后的子样本集的信息熵
+            sub_information_entropy_weight = len(split_dict[division_feature_id])/len(sample_list)  # 计算子样本集相应权重（子样本集的占比）
             entropy_gain -= sub_information_entropy * sub_information_entropy_weight
         return entropy_gain
 
@@ -238,6 +238,15 @@ class Dataset:
                 chosen_division_feature_number = division_feature_number
                 max_entropy_gain = temp_entropy_gain
         return chosen_division_feature_number
+
+    #
+    def computeIntrinsicValue(self, division_feature_id, sample_list=None):
+        intrinsic_value = 0.0
+        split_dict = self.splitSamplesList(division_feature_id, sample_list)
+        for division_feature_id in split_dict:
+            sub_samples_proportion = len(split_dict[division_feature_id])/len(sample_list)
+            intrinsic_value -= pLog2p(sub_samples_proportion)
+        return intrinsic_value
 
     #
     def selectDivisionFeatureByGainRatio(self, available_division_feature_list=None, sample_list=None):
