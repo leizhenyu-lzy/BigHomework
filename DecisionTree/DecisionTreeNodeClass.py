@@ -91,7 +91,7 @@ class DecisionTreeNode:
 
     # 判断是不是叶子节点
     def isLeaf(self):
-        if len(self.childnodes_id_list):  # 子节点非空
+        if not len(self.childnodes_id_list):  # 子节点非空
             return True
         else:  # 没有子节点
             return False

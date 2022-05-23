@@ -40,36 +40,40 @@ def drawOneTreeNode(graph, current_node, features_name_list):
     for childnode_idx in range(len(current_node.childnodes_id_list)):  # childnode_idx是指childnode在
         childnode = current_node.childnodes_list[childnode_idx]
         # 画子节点
-        if childnode.isLeaf():  # 叶节点是，
+        if childnode.isLeaf():  # 叶节点是
+            print('leaf')
             setGraphNodeAttribute(graph, 'leaf')  # 设置节点属性
             graph.node(name=str(childnode.node_id), label=childnode.final_label)
+            print(childnode.final_label)
         else:  # 不是叶节点
+            print('middle')
             setGraphNodeAttribute(graph, 'middle')  # 设置节点属性
             graph.node(name=str(childnode.node_id),
                        label=features_name_list[childnode.division_feature_id] + '=?')
+        graph.view()
         # 画连线
         graph.edge(str(current_node.node_id), str(childnode.node_id),
                    label=current_node.childnode_division_feature_value[childnode_idx])
+        print(current_node.childnode_division_feature_value[childnode_idx])
 
 # 画整颗树
 def drawDecisionTree(root_node, feature_name_list):
     tree_graph = graphviz.Graph(name="DecisionTree", filename="DecisionTree",
-                                directory="SavedDecsionTree", format='png')
+                                directory="SavedDecisionTree", format='png')
     setGraphNodeAttribute(tree_graph, 'middle')
+    setGraphEdgeAttribute(tree_graph)
     tree_graph.node(name=str(root_node.node_id), label=feature_name_list[root_node.division_feature_id] + '=?')
-    tree_graph.view(cleanup=True)
-    drawOneTreeNode(tree_graph, root_node, feature_name_list)
-
-    # node_queue = [root_node]
-    # queue_pointer = 0
-    # while queue_pointer < len(node_queue):
-    #     node_queue.extend(node_queue[queue_pointer].childnodes_list)
-    #     queue_pointer += 1
-    # for node in node_queue:
-    #     pass
-    #     # node.getNodeInfo()
+    # tree_graph.view(cleanup=True)
+    node_queue = [root_node]  # 将根节点添加进节点列表
+    queue_pointer = 0
+    while queue_pointer < len(node_queue):
+        node_queue.extend(node_queue[queue_pointer].childnodes_list)
+        queue_pointer += 1
+    for node in node_queue:
+        drawOneTreeNode(tree_graph, node, feature_name_list)
+        pass
+        # node.getNodeInfo()
     return tree_graph
-
 
 
 if __name__ == "__main__":

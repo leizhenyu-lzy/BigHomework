@@ -92,7 +92,7 @@ class Dataset:
                 for value in temp_value_dict:
                     if current_value == value:  # 之前出现过该特征值
                         new_value_flag = 0
-                        temp_value_dict[value] = temp_value_dict[value] + 1
+                        temp_value_dict[value] += 1
                         break
                 if new_value_flag == 1:  # 没有出现过重复特征值，将其添加
                     temp_value_dict[current_value] = 1
