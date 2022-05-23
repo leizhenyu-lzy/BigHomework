@@ -28,7 +28,7 @@ class DecisionTreeNode:
         self.childnodes_id_list = []  # 子节点编号列表（数值列表）
 
         self.division_feature_id = None  # 当前节点用于划分子节点的划分特征编号（单个数值）
-        self.childnode_division_feature_value = []  # 子节点对应划分特征的特征值（字符串列表）
+        self.childnode_division_feature_values = []  # 子节点对应划分特征的特征值（字符串列表）
         self.include_samples = []  # 当前节点包含的样本编号（数值列表）
         self.available_features_id = []  # 可用的划分特征列表，从父节点的改成员变量删去父节点划分特征所得（数值列表）
         self.final_label = None  # 对于叶节点，给出归到这里的样本的最终决策结果（标注的实际值）
@@ -54,7 +54,7 @@ class DecisionTreeNode:
         childnode.parentnode = self
         childnode.parentnode_id = self.node_id
         # 父子节点其余信息调整
-        self.childnode_division_feature_value.append(childnode_feature_value)
+        self.childnode_division_feature_values.append(childnode_feature_value)
 
     # 更新当前节点的划分特征
     def updateDivisionProperty(self, div_feature):
@@ -95,6 +95,36 @@ class DecisionTreeNode:
             return True
         else:  # 没有子节点
             return False
+
+    # 获取样本通过决策树得到的结果
+    def getSampleLabelByDecisionTree(self, sample_features_list):
+        if len(self.childnodes_id_list):  # 当前节点不为叶节点，需要进行细分
+            final_label = ""
+            sample_division_feature_value = sample_features_list[self.division_feature_id]  # 获取该样本对应当前节点的划分特征的值
+            division_feature_value_idx = self.childnode_division_feature_values.\
+                index(sample_division_feature_value)  # 获取样本划分特征的值所对应的子节点划分特征的值的列表中的序号，即后续递归使用的子节点在当前节点的子节点列表中的序号
+            use_childnode = self.childnodes_list[division_feature_value_idx]
+            final_label = use_childnode.getSampleLabelByDecisionTree(sample_features_list)
+            # use_sub_node = self.childnodes_list[]
+            return final_label
+        else:  # 当前节点为叶节点，当前节点的final_label即为样本的分类最终结果
+            return self.final_label
+
+    # 获取当前决策树混淆矩阵（字典形式）
+    def getConfusionMatrixDict(self, dataset):
+        # 先创建字典的字典，外层字典用于表示实际label，内层字典用于表示通过决策树得到的label
+        confusion_matrix = {}
+        for outer_label_value in dataset.labels_possible_values:
+            confusion_matrix[outer_label_value] = {}
+            for inner_label_value in dataset.labels_possible_values:
+                confusion_matrix[outer_label_value][inner_label_value] = 0
+
+        for sample_id in range(dataset.samples_amount):
+            outer_label_value = dataset.labels[sample_id]
+            inner_label_value = self.getSampleLabelByDecisionTree(dataset.features[sample_id])
+            confusion_matrix[outer_label_value][inner_label_value] += 1
+
+        return confusion_matrix
 
 
 if __name__ == "__main__":

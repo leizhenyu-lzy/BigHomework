@@ -2,6 +2,8 @@
 
 # Thirdparty
 import graphviz
+import matplotlib.pyplot as plt
+import numpy as np
 
 # User
 from DecisionTreeNodeClass import DecisionTreeNode
@@ -53,8 +55,8 @@ def drawOneTreeNode(graph, current_node, features_name_list):
         graph.view()
         # 画连线
         graph.edge(str(current_node.node_id), str(childnode.node_id),
-                   label=current_node.childnode_division_feature_value[childnode_idx])
-        print(current_node.childnode_division_feature_value[childnode_idx])
+                   label=current_node.childnode_division_feature_values[childnode_idx])
+        print(current_node.childnode_division_feature_values[childnode_idx])
 
 # 画整颗树
 def drawDecisionTree(root_node, feature_name_list):
@@ -71,10 +73,49 @@ def drawDecisionTree(root_node, feature_name_list):
         queue_pointer += 1
     for node in node_queue:
         drawOneTreeNode(tree_graph, node, feature_name_list)
-        pass
         # node.getNodeInfo()
     return tree_graph
 
 
+# 在终端中展示混淆矩阵
+def dictConfusionMatrixToList(confusion_mat_dict, show_flag=False):
+    confusion_mat_list = []
+    for i in confusion_mat_dict:
+        temp_list = list(confusion_mat_dict[i].values())
+        confusion_mat_list.append(temp_list)
+        if show_flag is True:
+            print(temp_list)
+    return np.array(confusion_mat_list)
+
+
+# 用matplotlib绘制混淆矩阵并保存
+def drawConfusionMatrix(confusion_matrix_nparray, label_values, title="Confusion Matrix"):
+    plt.figure()
+    plt.title(title)
+    # plt.axis('off')
+    plt.ylabel("Actual Label")  # 纵轴
+    plt.xlabel("Decision Tree Generate Label")  # 横轴
+
+    plt.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
+
+    # 在坐标轴上显示feature_values
+    tick_marks = np.arange(len(label_values))
+    plt.xticks(tick_marks, label_values)  # , rotation=45)
+    plt.yticks(tick_marks, label_values)
+
+    # 显示混淆矩阵
+    plt.imshow(confusion_matrix_nparray, cmap=plt.cm.Blues)
+    for i in range(len(label_values)):
+        for j in range(len(label_values)):
+            # 这里i，j需要反过来，否则会转置关系
+            plt.text(j, i, confusion_matrix_nparray[i][j], fontdict={'fontsize': 20}, ha='center', va='center')
+    plt.show()
+
+
 if __name__ == "__main__":
-    pass
+    conf_np_array = dictConfusionMatrixToList({1:{1:41,2:12,3:13},2:{3:23,4:24,5:25},3:{5:35,6:36,7:37}})
+    # print(conf_np_array)
+    drawConfusionMatrix(conf_np_array, ['da', 'sha', 'bi'], "haha")
+
+
+

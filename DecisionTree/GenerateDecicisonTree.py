@@ -68,9 +68,20 @@ if __name__ == "__main__":
     print("Finish generating a decision tree")
     user.printSeparateBar()
 
+    # 打印决策树信息广度优先方式方式，方便横向查看
     # root_node.printDecisionTreeBreadthFirst()
+    # 打印决策树信息深度优先方式方式，方便横向查看
+    # root_node.printDecisionTreeDepthFirst()
 
-    tree_graph = viz.drawDecisionTree(root_node, melon_dataset.features_name)
-    tree_graph.view(cleanup=True)
+    # 使用Graphviz库图形化展示决策树，并将图片进行保存
+    # tree_graph = viz.drawDecisionTree(root_node, melon_dataset.features_name)
+    # tree_graph.view(cleanup=True)
 
-    # 决策树展示
+    # 随便给当前决策树一个样本，判断其label值
+    # sample_final_label = root_node.getSampleLabelByDecisionTree(melon_dataset.features[14])
+    # print(sample_final_label)
+
+    confusion_matrix = root_node.getConfusionMatrixDict(melon_dataset)
+    confusion_matrix_nparray = viz.dictConfusionMatrixToList(confusion_matrix)
+    viz.drawConfusionMatrix(confusion_matrix_nparray, melon_dataset.getLabelsPossibleValuesList())
+

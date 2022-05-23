@@ -28,8 +28,8 @@ class Dataset:
         self.labels = []
         self.label_name = ""  # 标签索引名称
 
-        self.features_possible_values = []  # 各个特征的全部可能的特征值，列表内嵌字典
-        self.labels_possible_values = {}  # 标签的可能值（字典）
+        self.features_possible_values = []  # 各个特征的全部可能的特征值，列表元素为字典，字典内为feature的值及对应个数
+        self.labels_possible_values = {}  # 标签的可能值（字典,labels可能值和对应数量）
 
         # self.available_features_number_list = []  # not const
 
@@ -269,6 +269,13 @@ class Dataset:
                     same_feature_flag = 0
                     return 0
         return same_feature_flag
+
+    # 获取列表形式的标签值
+    def getLabelsPossibleValuesList(self):
+        labels_possible_values_list = []
+        for label_value in self.labels_possible_values:
+            labels_possible_values_list.append(label_value)
+        return labels_possible_values_list
 
 
 if __name__ == "__main__":
