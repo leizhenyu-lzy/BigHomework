@@ -1,20 +1,17 @@
 # 1950083 自动化 刘智宇
 
 # Thirdparty
-import numpy as np
-import pandas as pd
 
 # User
 import UserToolFunction as user
-import DivisionChoiceFunction
 from DecisionTreeNodeClass import DecisionTreeNode
 from DatasetClass import Dataset
 import DecisionTreeVisiualize as viz
 
 
-def generateDecisionTree(dataset, current_node):
+def generateDecisionTree(dataset, current_node, get_division_feature_method):
     labels_possible_values_dict = dataset.countLabelsPossibleValuesByList(current_node.include_samples)
-    most_possible_label_value = user.getMaxValueIndex(labels_possible_values_dict)
+    most_possible_label_value = user.getMaxValueIndex(labels_possible_values_dict)  # 得到当前序列最大的值，对列表和数组都适用
 
     # 判断样本是否全属于同一类别，如果是则将该treenode标记为该类的叶节点
     if len(labels_possible_values_dict) == 1:
@@ -29,8 +26,9 @@ def generateDecisionTree(dataset, current_node):
         return
 
     # 得到最优划分特征
-    best_division_feature_id = dataset.getDivisionFeature(current_node.available_features_id, current_node.include_samples)
-    best_division_feature_name = dataset.features_name[best_division_feature_id]
+    best_division_feature_id = dataset.getDivisionFeature(current_node.available_features_id,
+                                                          current_node.include_samples, get_division_feature_method)
+    # best_division_feature_name = dataset.features_name[best_division_feature_id]
     # print(best_division_feature_name)
     sub_node_available_features = current_node.available_features_id.copy()
     sub_node_available_features.remove(best_division_feature_id)  # 选出了最佳划分特征，后面的决策应不受该特征影响
@@ -46,7 +44,7 @@ def generateDecisionTree(dataset, current_node):
         sub_node.available_features_id = sub_node_available_features
         if split_dict.get(feature_value, 0):  # 如果拆分出的字典键值中有feature_value
             sub_node.setIncludeSample(split_dict[feature_value])
-            generateDecisionTree(dataset, sub_node)  # 递归调用
+            generateDecisionTree(dataset, sub_node, get_division_feature_method)  # 递归调用
         else:  # 如果拆分出的字典键值中没有feature_value
             sub_node.final_label = most_possible_label_value
     return
@@ -64,18 +62,22 @@ if __name__ == "__main__":
     root_node.setIncludeSample([cnt for cnt in range(melon_dataset.samples_amount)])  # 树节点包含所有样本
     root_node.setAvailableFeaturesId([cnt for cnt in range(melon_dataset.features_number)])
     # root_node.setIncludeSample([cnt for cnt in range(10, 13)])  # 树节点包含的部分样本
-    generateDecisionTree(dataset=melon_dataset, current_node=root_node)
+    generateDecisionTree(dataset=melon_dataset, current_node=root_node,
+                         get_division_feature_method=user.get_division_feature_method)
     print("Finish generating a decision tree")
     user.printSeparateBar()
 
     # 打印决策树信息广度优先方式方式，方便横向查看
-    # root_node.printDecisionTreeBreadthFirst()
+    root_node.printDecisionTreeBreadthFirst()
     # 打印决策树信息深度优先方式方式，方便横向查看
     # root_node.printDecisionTreeDepthFirst()
 
+    decicion_tree_name = melon_dataset.dataset_name+user.get_division_feature_methods_name[user.get_division_feature_method]
+    # print(decicion_tree_name)
+
     # 使用Graphviz库图形化展示决策树，并将图片进行保存
-    # tree_graph = viz.drawDecisionTree(root_node, melon_dataset.features_name)
-    # tree_graph.view(cleanup=True)
+    tree_graph = viz.drawDecisionTree(root_node, melon_dataset.features_name, decicion_tree_name)
+    tree_graph.view(cleanup=True)  # 清除除了png图片以外的其他多余文件
 
     # 随便给当前决策树一个样本，判断其label值
     # sample_final_label = root_node.getSampleLabelByDecisionTree(melon_dataset.features[14])
@@ -83,5 +85,6 @@ if __name__ == "__main__":
 
     confusion_matrix = root_node.getConfusionMatrixDict(melon_dataset)
     confusion_matrix_nparray = viz.dictConfusionMatrixToList(confusion_matrix)
-    viz.drawConfusionMatrix(confusion_matrix_nparray, melon_dataset.getLabelsPossibleValuesList())
+    viz.drawConfusionMatrix(confusion_matrix_nparray, melon_dataset.getLabelsPossibleValuesList(),
+                            fig_name=decicion_tree_name+'ConfusionMatrix')
 

@@ -1,5 +1,9 @@
 # 1950083 自动化 刘智宇
+
+# Thirdparty
 import os.path
+import math
+
 
 # 常量定义
 DatasetsFolder = "Datasets"
@@ -15,10 +19,11 @@ failure = 0
 entropy_gain = 0
 gain_ratio = 1
 gini_index = 2
-select_division_feature_choice = entropy_gain  # 默认使用信息熵增益
+get_division_feature_method = gini_index
+get_division_feature_methods_name = ["ByEntropyGain", "ByGainRatio", "GainIndex"]
 
 
-def printSeparateBar(length=20, sign="*"):
+def printSeparateBar(length=40, sign="*"):
     print(sign*length)
 
 
@@ -37,7 +42,9 @@ def getMaxValueIndex(sequence):
         print("Can't handle this sequence.")
         return None
 
-
+def pLog2p(possibility):
+    possibility = float(possibility)
+    return possibility * math.log(possibility, 2)
 
 
 if __name__ == "__main__":

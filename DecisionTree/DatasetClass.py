@@ -5,7 +5,6 @@ import pandas as pd
 
 # User
 import UserToolFunction as user
-from DivisionChoiceFunction import *
 
 
 """
@@ -190,20 +189,15 @@ class Dataset:
 
     # 给定样本列表，计算信息熵
     def computeInformationEntropy(self, sample_list=None):
+        if sample_list is None:  # 没有给定sample_list，就认为是全部
+            sample_list = [cnt for cnt in range(self.samples_amount)]
+
         information_entropy = 0.0  # 信息熵
         label_values_dict = self.countLabelsPossibleValuesByList(sample_list)  # 统计标签值的字典
 
-        # 得到sample_list长度
-        if sample_list is None:
-            sum_label_values_number = self.samples_amount
-        else:
-            sum_label_values_number = len(sample_list)
-
-        label_values_varity = len(label_values_dict)  # 标签值的类别数
-
-        for cnt in range(label_values_varity):
-            possibility = (0.0 + list(label_values_dict.values())[cnt]) / sum_label_values_number
-            information_entropy -= pLog2p(possibility)
+        for label_value in label_values_dict:
+            label_proportion = (0.0 + label_values_dict[label_value])/len(sample_list)
+            information_entropy -= user.pLog2p(label_proportion)
         # print(information_entropy)
         return information_entropy
 
@@ -230,53 +224,116 @@ class Dataset:
             sample_list = [cnt for cnt in range(self.samples_amount)]
         if available_division_feature_list is None:  # 没有给定available_division_feature_list，认为全部可用
             available_division_feature_list = [cnt for cnt in range(self.features_number)]
-        chosen_division_feature_number = 0
+        chosen_division_feature_id = 0
         max_entropy_gain = 0.0
-        for division_feature_number in available_division_feature_list:
-            temp_entropy_gain = self.computeOneFeatureEntropyGain(division_feature_number, sample_list)
+        for division_feature_id in available_division_feature_list:
+            temp_entropy_gain = self.computeOneFeatureEntropyGain(division_feature_id, sample_list)
             if temp_entropy_gain > max_entropy_gain:
-                chosen_division_feature_number = division_feature_number
+                chosen_division_feature_id = division_feature_id
                 max_entropy_gain = temp_entropy_gain
-        return chosen_division_feature_number
+        return chosen_division_feature_id
 
-    #
+    # 计算某一特征的固有值intrinsic value
     def computeIntrinsicValue(self, division_feature_id, sample_list=None):
         intrinsic_value = 0.0
+        if sample_list is None:  # 没有给定sample_list，就认为是全部
+            sample_list = [cnt for cnt in range(self.samples_amount)]
         split_dict = self.splitSamplesList(division_feature_id, sample_list)
-        for division_feature_id in split_dict:
-            sub_samples_proportion = len(split_dict[division_feature_id])/len(sample_list)
-            intrinsic_value -= pLog2p(sub_samples_proportion)
+        for division_feature in split_dict:
+            sub_samples_proportion = len(split_dict[division_feature])/len(sample_list)
+            intrinsic_value -= user.pLog2p(sub_samples_proportion)
+        # print("intrinsic_value : ", intrinsic_value)
         return intrinsic_value
+    
+    # 计算某一特征的信息增益率
+    def computeOneFeatureGainRatio(self, division_feature_id, sample_list=None):
+        feature_intrinsic_value = self.computeIntrinsicValue(division_feature_id, sample_list)  # 计算特征的固有值
+        feature_information_gain = self.computeOneFeatureEntropyGain(division_feature_id, sample_list)  # 计算特征的信息增益
+        return feature_information_gain/feature_intrinsic_value  # 计算特征增益率
 
-    #
+    # 通过信息增益率的方式选出最合适的划分特征
     def selectDivisionFeatureByGainRatio(self, available_division_feature_list=None, sample_list=None):
-        pass
+        if sample_list is None:  # 没有给定sample_list，就认为是全部
+            sample_list = [cnt for cnt in range(self.samples_amount)]
+        if available_division_feature_list is None:  # 没有给定available_division_feature_list，认为全部可用
+            available_division_feature_list = [cnt for cnt in range(self.features_number)]
+        chosen_division_feature_id = 0
+        max_gain_ratio = 0.0
+        for division_feature_id in available_division_feature_list:
+            temp_gain_ratio = self.computeOneFeatureGainRatio(division_feature_id, sample_list)
+            # print(temp_gain_ratio)
+            if temp_gain_ratio > max_gain_ratio:
+                chosen_division_feature_id = division_feature_id
+                max_gain_ratio = temp_gain_ratio
+        return chosen_division_feature_id
 
-    #
+    # 计算基尼值
+    def computeGiniValue(self, sample_list=None):
+        if sample_list is None:  # 没有给定sample_list，就认为是全部样本
+            sample_list = [cnt for cnt in range(self.samples_amount)]
+
+        gini_value = 1.0  # 使用1-[sigma(p)]^2的公式进行基尼值的度量，故从1.0开始减
+        label_values_dict = self.countLabelsPossibleValuesByList(sample_list)  # 统计标签值的字典
+
+        for label_value in label_values_dict:
+            label_proportion = (0.0 + label_values_dict[label_value])/len(sample_list)
+            gini_value -= pow(label_proportion, 2)
+        # print("gini_value : ", gini_value)
+        return gini_value
+
+    # 计算某一划分特征的基尼指数（基尼指数不等同于基尼值，多进行了加权平均）
+    def computeOneFeatureGiniIndex(self, division_feature_id, sample_list=None):
+        if sample_list is None:  # 没有给定sample_list，就认为是全部
+            sample_list = [cnt for cnt in range(self.samples_amount)]
+        gini_index = 0.0
+        # 对样本列表根据划分特征进行拆分，得到字典（字典中的value为样本id列表）
+        split_dict = self.splitSamplesList(division_feature_id, sample_list)
+        # 计算拆分后各样本子列表的加权信息熵，并从信息增益中减去
+        for division_feature_id in split_dict:
+            sub_gini_value = self.computeGiniValue(split_dict[division_feature_id])  # 计算划分后的子样本集的信息熵
+            sub_gini_value_weight = len(split_dict[division_feature_id]) / len(sample_list)  # 计算子样本集相应权重（子样本集的占比）
+            gini_index += sub_gini_value * sub_gini_value_weight
+        # print("gini_index : ", gini_index)
+        return gini_index
+
+    # 通过基尼系数的方式选出最合适的划分特征
     def selectDivisionFeatureByGiniIndex(self, available_division_feature_list=None, sample_list=None):
-        pass
+        # 注意根据基尼系数选择要选择最小的
+        if sample_list is None:  # 没有给定sample_list，就认为是全部
+            sample_list = [cnt for cnt in range(self.samples_amount)]
+        if available_division_feature_list is None:  # 没有给定available_division_feature_list，认为全部可用
+            available_division_feature_list = [cnt for cnt in range(self.features_number)]
+        chosen_division_feature_id = 0
+        min_gini_index = 1.0
+        for division_feature_id in available_division_feature_list:
+            temp_gini_index = self.computeOneFeatureGiniIndex(division_feature_id, sample_list)
+            # print(temp_gini_index)
+            if temp_gini_index < min_gini_index:
+                chosen_division_feature_id = division_feature_id
+                min_gini_index = temp_gini_index
+        return chosen_division_feature_id
 
     # 将三种选取
-    def getDivisionFeature(self, available_division_feature_list=None, sample_list=None):
-        if user.select_division_feature_choice == user.entropy_gain:
+    def getDivisionFeature(self, available_division_feature_list=None, sample_list=None, get_division_feature_method=user.entropy_gain):
+        if get_division_feature_method == user.entropy_gain:
             return self.selectDivisionFeatureByEntropyGain(available_division_feature_list, sample_list)
-        elif user.select_division_feature_choice == user.gain_ratio:
+        elif get_division_feature_method == user.gain_ratio:
             return self.selectDivisionFeatureByGainRatio(available_division_feature_list, sample_list)
-        elif user.select_division_feature_choice == user.gini_index:
+        elif get_division_feature_method == user.gini_index:
             return self.selectDivisionFeatureByGiniIndex(available_division_feature_list, sample_list)
 
-    #
-    def judgeSamplesHaveSameFeatures(self, feature_list, sample_list):
+    # 判断给定的samples中
+    def judgeSamplesHaveSameFeatures(self, features_list, samples_list):
         same_feature_flag = 1
-        if len(sample_list) == 1:
+        if len(samples_list) == 1:
             return 1
-        for i in feature_list:
-            first_sample_feature = self.features[sample_list[0]][i]
-            for j in sample_list[1:]:
+        for i in features_list:
+            first_sample_feature = self.features[samples_list[0]][i]
+            for j in samples_list[1:]:
                 temp_feature = self.features[j][i]
                 if temp_feature != first_sample_feature:
                     same_feature_flag = 0
-                    return 0
+                    return same_feature_flag
         return same_feature_flag
 
     # 获取列表形式的标签值
@@ -286,11 +343,16 @@ class Dataset:
             labels_possible_values_list.append(label_value)
         return labels_possible_values_list
 
+    # 拆分数据集和训练集
+    def seperateTrainSetAndTestSet(self, train_list=None):
+        if train_list is None:
+            train_list =
+        pass
 
 if __name__ == "__main__":
     melon_dataset = Dataset(dataset_path=user.MelonDatasetPath, dataset_name="MelonDataset")
     melon_dataset.comprehensiveInitializeDataset()
 
-    # melon_dataset.printDatasetInfo()
-
+    melon_dataset.selectDivisionFeatureByGiniIndex()
+    pass
 

@@ -4,6 +4,7 @@
 import graphviz
 import matplotlib.pyplot as plt
 import numpy as np
+import os.path
 
 # User
 from DecisionTreeNodeClass import DecisionTreeNode
@@ -43,24 +44,24 @@ def drawOneTreeNode(graph, current_node, features_name_list):
         childnode = current_node.childnodes_list[childnode_idx]
         # 画子节点
         if childnode.isLeaf():  # 叶节点是
-            print('leaf')
+            # print('leaf')
             setGraphNodeAttribute(graph, 'leaf')  # 设置节点属性
             graph.node(name=str(childnode.node_id), label=childnode.final_label)
-            print(childnode.final_label)
+            # print(childnode.final_label)
         else:  # 不是叶节点
-            print('middle')
+            # print('middle')
             setGraphNodeAttribute(graph, 'middle')  # 设置节点属性
             graph.node(name=str(childnode.node_id),
                        label=features_name_list[childnode.division_feature_id] + '=?')
-        graph.view()
+        # graph.view()
         # 画连线
         graph.edge(str(current_node.node_id), str(childnode.node_id),
                    label=current_node.childnode_division_feature_values[childnode_idx])
-        print(current_node.childnode_division_feature_values[childnode_idx])
+        # print(current_node.childnode_division_feature_values[childnode_idx])
 
 # 画整颗树
-def drawDecisionTree(root_node, feature_name_list):
-    tree_graph = graphviz.Graph(name="DecisionTree", filename="DecisionTree",
+def drawDecisionTree(root_node, feature_name_list, filename=""):
+    tree_graph = graphviz.Graph(name="DecisionTree", filename=filename,
                                 directory="SavedDecisionTree", format='png')
     setGraphNodeAttribute(tree_graph, 'middle')
     setGraphEdgeAttribute(tree_graph)
@@ -89,9 +90,9 @@ def dictConfusionMatrixToList(confusion_mat_dict, show_flag=False):
 
 
 # 用matplotlib绘制混淆矩阵并保存
-def drawConfusionMatrix(confusion_matrix_nparray, label_values, title="Confusion Matrix"):
+def drawConfusionMatrix(confusion_matrix_nparray, label_values, fig_name):
     plt.figure()
-    plt.title(title)
+    plt.title('ConfusionMatrix')
     # plt.axis('off')
     plt.ylabel("Actual Label")  # 纵轴
     plt.xlabel("Decision Tree Generate Label")  # 横轴
@@ -109,7 +110,11 @@ def drawConfusionMatrix(confusion_matrix_nparray, label_values, title="Confusion
         for j in range(len(label_values)):
             # 这里i，j需要反过来，否则会转置关系
             plt.text(j, i, confusion_matrix_nparray[i][j], fontdict={'fontsize': 20}, ha='center', va='center')
-    plt.show()
+    save_fig_path = os.path.join('SavedDecisionTree', fig_name+'.png')
+    plt.savefig(save_fig_path)
+    plt.show(block=False)  # 一定要先保存图片再进行显示，否则保存的图片为空白
+    plt.pause(3)  # 显示3秒自动关闭窗口，再plt.show中需要添加block=False
+    plt.close()
 
 
 if __name__ == "__main__":
