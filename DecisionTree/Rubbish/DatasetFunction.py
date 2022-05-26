@@ -10,7 +10,7 @@ dataset_prefix = 'Datasets/'
 函数输入：数据集路径，数据集是否有header(没有写None)，数据集是否有index列(没有写None)
 函数返回：二维列表形式数据集dataset、数据集列标签dataset_index(包括label标签)
 """
-def readDataset(dataset_name=dataset_prefix+'MelonDataset.txt', dataset_header=0, dataset_index_col=None):
+def readDataset(dataset_name=dataset_prefix+'MelonDataset2.txt', dataset_header=0, dataset_index_col=None):
     dataset_df = pd.read_csv(dataset_name, header=dataset_header, index_col=dataset_index_col)
     # 通过values属性转换为列表形式
     dataset = dataset_df.values

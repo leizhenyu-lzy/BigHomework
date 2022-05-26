@@ -28,7 +28,10 @@ class DecisionTreeNode:
         self.childnodes_id_list = []  # 子节点编号列表（数值列表）
 
         self.division_feature_id = None  # 当前节点用于划分子节点的划分特征编号（单个数值）
-        self.childnode_division_feature_values = []  # 子节点对应划分特征的特征值（字符串列表）
+        self.childnode_division_feature_values = []  # 子节点对应划分特征的特征值（特征值列表）
+        # （对于连续值，二分法，存放相同的值，默认左节点为bigger，右节点为smaller）
+        self.continue_feature_bigger_smaller = None  # 若父节点的划分特征为连续值，判断当前节点是对应bigger、smaller
+
         self.include_samples = []  # 当前节点包含的样本编号（数值列表）
         self.available_features_id = []  # 可用的划分特征列表，从父节点的改成员变量删去父节点划分特征所得（数值列表）
         self.final_label = None  # 对于叶节点，给出归到这里的样本的最终决策结果（标注的实际值）
@@ -96,10 +99,9 @@ class DecisionTreeNode:
         else:  # 没有子节点
             return False
 
-    # 获取样本通过决策树得到的结果
+    # 获取样本通过决策树得到的结果(pending:对于连续值的处理)
     def getSampleLabelByDecisionTree(self, sample_features_list):
         if len(self.childnodes_id_list):  # 当前节点不为叶节点，需要进行细分
-            final_label = ""
             sample_division_feature_value = sample_features_list[self.division_feature_id]  # 获取该样本对应当前节点的划分特征的值
             division_feature_value_idx = self.childnode_division_feature_values.\
                 index(sample_division_feature_value)  # 获取样本划分特征的值所对应的子节点划分特征的值的列表中的序号，即后续递归使用的子节点在当前节点的子节点列表中的序号

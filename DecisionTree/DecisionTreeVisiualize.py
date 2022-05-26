@@ -118,7 +118,7 @@ def drawConfusionMatrix(confusion_matrix_nparray, label_values, fig_name):
 
 
 if __name__ == "__main__":
-    conf_np_array = dictConfusionMatrixToList({1:{1:41,2:12,3:13},2:{3:23,4:24,5:25},3:{5:35,6:36,7:37}})
+    conf_np_array = dictConfusionMatrixToList({1: {1: 41, 2: 12, 3: 13}, 2: {3: 23, 4: 24, 5: 25}, 3: {5: 35, 6: 36, 7: 37}})
     # print(conf_np_array)
     drawConfusionMatrix(conf_np_array, ['da', 'sha', 'bi'], "haha")
 

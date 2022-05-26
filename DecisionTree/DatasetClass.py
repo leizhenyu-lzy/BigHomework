@@ -22,7 +22,7 @@ class Dataset:
         self.features_number = 0  # 特征索引个数
         self.features_name = []  # 全部特征名称，用于后续决策树划分
         self.features = []  # 数据集的全部样本特征数据
-        self.features_continuity = []  # 连续特征标记
+        self.features_continuity = []  # 连续特征标记（1表示连续，0表示离散）
 
         self.labels = []
         self.label_name = ""  # 标签索引名称
@@ -33,11 +33,11 @@ class Dataset:
         # self.available_features_number_list = []  # not const
 
     # 高级初始化
-    def comprehensiveInitializeDataset(self):
-        self.readDataset()
+    def comprehensiveInitializeDataset(self, continuity_list=None):
+        self.readDataset(header=user.dataset_header, index_col=user.dataset_index_col)
         self.countFeaturesPossibleValues()  #
         self.countLabelsPossibleValues()  #
-        self.judgeFeaturesContinuity()  # 确定是否为连续特征
+        self.setFeaturesContinuity(continuity_list)  # 确定是否为连续特征(pending)
 
     # 读取数据集
     def readDataset(self, header=0, index_col=None):
@@ -106,19 +106,8 @@ class Dataset:
     def countLabelsPossibleValues(self):
         labels_possible_values = self.countLabelsPossibleValuesByList()
         self.labels_possible_values = labels_possible_values
-        # self.labels_possible_values[self.labels[0]] = 1
-        # for sample_number in range(1, self.samples_amount):
-        #     new_label_value_flag = 1
-        #     temp_label_value = self.labels[sample_number]
-        #     for value in self.labels_possible_values:
-        #         if temp_label_value == value:
-        #             new_label_value_flag = 0
-        #             self.labels_possible_values[temp_label_value] += 1
-        #             break
-        #     if new_label_value_flag == 1:
-        #         self.labels_possible_values[temp_label_value] = 1
 
-    # 统计给定编号的数据的标签值的种类及其个数
+    # 统计给定编号的数据的标签值(label)的种类及其个数
     def countLabelsPossibleValuesByList(self, sample_list=None):
         if sample_list is None:
             sample_list = [cnt for cnt in range(self.samples_amount)]
@@ -136,15 +125,6 @@ class Dataset:
             if new_label_value_flag == 1:
                 labels_possible_values_dict[temp_label_value] = 1
         return labels_possible_values_dict
-        # label_possible_values = {}  # 字典形式
-        # for label_value in self.labels_possible_values:
-        #     label_possible_values[label_value] = 0
-        # for sample_number in sample_list:
-        #     label_possible_values[self.labels[sample_number]] += 1
-        # for label_value in self.labels_possible_values:
-        #     if label_possible_values[label_value] == 0:
-        #         label_possible_values.pop(label_value)
-        # return label_possible_values
 
     # # 判断是否所有样本的label都相同
     # def judgeSamplesBelongSameCategory(self, sample_list=None):
@@ -157,27 +137,34 @@ class Dataset:
     #         return False
 
     # 判断特征的连续性
-    def judgeFeaturesContinuity(self, continuity_list=None):
-        if continuity_list is None:
-            self.features_continuity = [0] * self.features_number  # 默认全部不连续
-            return user.success
+    def setFeaturesContinuity(self, continuity_list=None):
+        if continuity_list is None:  # 没有传入连续值列表，默认全部不连续
+            self.features_continuity = [0] * self.features_number
+            return True
         elif len(continuity_list) == self.features_number:
             self.features_continuity = continuity_list
-            return user.success
-        else:
-            return user.failure
+            return True
+        else:  # 传入continuity_list但是长度对不上，说明list长度错误，打印错误信息
+            print("[INFO] : The length of continuity_list is wrong.")
+            return False
 
-    # 通过给定特征拆分给定样本列表
+    # 通过给定特征拆分给定样本列表（需考虑是否为连续特征）
     def splitSamplesList(self, division_feature_id, sample_list=None, continuity_split_value=0):
         if sample_list is None:  # 没有给定sample_list，就统计所有值
             sample_list = [cnt for cnt in range(self.samples_amount)]
         split_dict = {}
         if self.features_continuity[division_feature_id]:  # 连续特征
+            print("splitSampleList : Continue")
             split_dict['bigger'] = []
             split_dict['smaller'] = []
-            # 可能要考虑连续值重复，相等时归给谁
-            pass
+            # 根据西瓜书：大于的归为一类，不大于的归为一类
+            for sample_id in sample_list:
+                if self.features[sample_id][division_feature_id] > continuity_split_value:
+                    split_dict['bigger'].append(sample_id)
+                else:
+                    split_dict['smaller'].append(sample_id)
         else:  # 非连续特征
+            print("splitSampleList : Discrete")
             for division_feature_value in list(self.features_possible_values[division_feature_id].keys()):
                 split_dict[division_feature_value] = []
             for sample_number in sample_list:
@@ -187,7 +174,7 @@ class Dataset:
                     split_dict.pop(division_feature_value)  # 删除值为空列表的键值对
         return split_dict
 
-    # 给定样本列表，计算信息熵
+    # 给定样本列表，计算信息熵（对于是否连续都适用，只统计label）
     def computeInformationEntropy(self, sample_list=None):
         if sample_list is None:  # 没有给定sample_list，就认为是全部
             sample_list = [cnt for cnt in range(self.samples_amount)]
@@ -201,22 +188,43 @@ class Dataset:
         # print(information_entropy)
         return information_entropy
 
-    # 计算给定的划分特征、样本列表的信息增益
-    def computeOneFeatureEntropyGain(self, division_feature_id, sample_list=None):
-        if sample_list is None:  # 没有给定sample_list，就认为是全部
-            sample_list = [cnt for cnt in range(self.samples_amount)]
-        entropy_gain = 0.0
+    # 计算给定的划分特征、样本列表的信息增益（需考虑是否为连续特征）
+    def computeOneFeatureEntropyGain(self, division_feature_id, samples_list=None, continuous_feature_flag=False):
+        if samples_list is None:  # 没有给定sample_list，就认为是全部
+            samples_list = [cnt for cnt in range(self.samples_amount)]
         # 先计算整体的信息熵
-        overall_information_entropy = self.computeInformationEntropy(sample_list)
-        entropy_gain += overall_information_entropy
-        # 对样本列表根据划分特征进行拆分，得到字典（字典中的value为列表）
-        split_dict = self.splitSamplesList(division_feature_id, sample_list)
-        # 计算拆分后各样本子列表的加权信息熵，并从信息增益中减去
-        for division_feature_id in split_dict:
-            sub_information_entropy = self.computeInformationEntropy(split_dict[division_feature_id])  # 计算划分后的子样本集的信息熵
-            sub_information_entropy_weight = len(split_dict[division_feature_id])/len(sample_list)  # 计算子样本集相应权重（子样本集的占比）
-            entropy_gain -= sub_information_entropy * sub_information_entropy_weight
-        return entropy_gain
+        overall_information_entropy = self.computeInformationEntropy(samples_list)
+        entropy_gain = overall_information_entropy
+
+        if continuous_feature_flag:  # 连续特征
+            feature_values_list = []
+            for sample_id in samples_list:
+                feature_values_list.append(self.features[sample_id][division_feature_id])
+            feature_values_list.sort()
+            print("Sorted Value List : ", feature_values_list)
+            best_entropy_gain_split_value = 0.0  # 最大信息增益对应的特征划分值
+            max_entropy_gain = 0.0  # 最大的信息增益
+            for value_id in [i+1 for i in range(len(feature_values_list)-1)]:  # 将所有候选划分点加入待测列表
+                temp_entropy_gain = entropy_gain  # 每次循环更新原值
+                continuity_split_value = (feature_values_list[value_id]+feature_values_list[value_id-1])/2
+                split_dict = self.splitSamplesList(division_feature_id, samples_list, continuity_split_value)
+                for division_feature_value in split_dict:
+                    sub_information_entropy = self.computeInformationEntropy(split_dict[division_feature_value])  # 计算划分后的子样本集的信息熵
+                    sub_information_entropy_weight = len(split_dict[division_feature_value]) / len(samples_list)  # 计算子样本集相应权重（子样本集的占比）
+                    temp_entropy_gain -= sub_information_entropy * sub_information_entropy_weight
+                if temp_entropy_gain > max_entropy_gain:  # 更新连续特征的最优划分值，更新最大的信息增益
+                    best_entropy_gain_split_value = continuity_split_value
+                    max_entropy_gain = temp_entropy_gain
+            return max_entropy_gain, best_entropy_gain_split_value
+        else:  # 非连续特征
+            # 对样本列表根据划分特征进行拆分，得到字典（字典中的value为列表）
+            split_dict = self.splitSamplesList(division_feature_id, samples_list)
+            # 计算拆分后各样本子列表的加权信息熵，并从信息增益中减去
+            for division_feature_value in split_dict:
+                sub_information_entropy = self.computeInformationEntropy(split_dict[division_feature_value])  # 计算划分后的子样本集的信息熵
+                sub_information_entropy_weight = len(split_dict[division_feature_value])/len(samples_list)  # 计算子样本集相应权重（子样本集的占比）
+                entropy_gain -= sub_information_entropy * sub_information_entropy_weight
+        return entropy_gain, None
 
     # 通过信息增益的方式选出最合适的划分特征
     def selectDivisionFeatureByEntropyGain(self, available_division_feature_list=None, sample_list=None):
@@ -224,14 +232,16 @@ class Dataset:
             sample_list = [cnt for cnt in range(self.samples_amount)]
         if available_division_feature_list is None:  # 没有给定available_division_feature_list，认为全部可用
             available_division_feature_list = [cnt for cnt in range(self.features_number)]
-        chosen_division_feature_id = 0
+        chosen_division_feature_id = None
         max_entropy_gain = 0.0
+        best_split_value = None
         for division_feature_id in available_division_feature_list:
-            temp_entropy_gain = self.computeOneFeatureEntropyGain(division_feature_id, sample_list)
+            temp_entropy_gain, split_value = self.computeOneFeatureEntropyGain(division_feature_id, sample_list)
             if temp_entropy_gain > max_entropy_gain:
                 chosen_division_feature_id = division_feature_id
                 max_entropy_gain = temp_entropy_gain
-        return chosen_division_feature_id
+                best_split_value = split_value  # 对于连续特征特有的最佳划分特征
+        return chosen_division_feature_id, best_split_value
 
     # 计算某一特征的固有值intrinsic value
     def computeIntrinsicValue(self, division_feature_id, sample_list=None):
@@ -248,7 +258,7 @@ class Dataset:
     # 计算某一特征的信息增益率
     def computeOneFeatureGainRatio(self, division_feature_id, sample_list=None):
         feature_intrinsic_value = self.computeIntrinsicValue(division_feature_id, sample_list)  # 计算特征的固有值
-        feature_information_gain = self.computeOneFeatureEntropyGain(division_feature_id, sample_list)  # 计算特征的信息增益
+        feature_information_gain = self.computeOneFeatureEntropyGain(division_feature_id, sample_list)[0]  # 计算特征的信息增益
         return feature_information_gain/feature_intrinsic_value  # 计算特征增益率
 
     # 通过信息增益率的方式选出最合适的划分特征
@@ -265,7 +275,7 @@ class Dataset:
             if temp_gain_ratio > max_gain_ratio:
                 chosen_division_feature_id = division_feature_id
                 max_gain_ratio = temp_gain_ratio
-        return chosen_division_feature_id
+        return chosen_division_feature_id, None
 
     # 计算基尼值
     def computeGiniValue(self, sample_list=None):
@@ -311,9 +321,9 @@ class Dataset:
             if temp_gini_index < min_gini_index:
                 chosen_division_feature_id = division_feature_id
                 min_gini_index = temp_gini_index
-        return chosen_division_feature_id
+        return chosen_division_feature_id, None
 
-    # 将三种选取
+    # 将三种选取最优划分特征的方法进行汇总（不关心连续或非连续）
     def getDivisionFeature(self, available_division_feature_list=None, sample_list=None, get_division_feature_method=user.entropy_gain):
         if get_division_feature_method == user.entropy_gain:
             return self.selectDivisionFeatureByEntropyGain(available_division_feature_list, sample_list)
@@ -322,14 +332,14 @@ class Dataset:
         elif get_division_feature_method == user.gini_index:
             return self.selectDivisionFeatureByGiniIndex(available_division_feature_list, sample_list)
 
-    # 判断给定的samples中
+    # 判断给定的samples再给定的features十分完全相同（对是否连续都能处理）
     def judgeSamplesHaveSameFeatures(self, features_list, samples_list):
         same_feature_flag = 1
         if len(samples_list) == 1:
             return 1
-        for i in features_list:
-            first_sample_feature = self.features[samples_list[0]][i]
-            for j in samples_list[1:]:
+        for i in features_list:  # 对特征循环
+            first_sample_feature = self.features[samples_list[0]][i]  # 给定的第0个样本所有特征的值一定为新的
+            for j in samples_list[1:]:  # 对样本循环
                 temp_feature = self.features[j][i]
                 if temp_feature != first_sample_feature:
                     same_feature_flag = 0
@@ -343,11 +353,13 @@ class Dataset:
             labels_possible_values_list.append(label_value)
         return labels_possible_values_list
 
-    # 拆分数据集和训练集
+    # 拆分数据集和训练集(pending)
     def seperateTrainSetAndTestSet(self, train_list=None):
         if train_list is None:
-            train_list =
+            # train_list =
+            pass
         pass
+
 
 if __name__ == "__main__":
     melon_dataset = Dataset(dataset_path=user.MelonDatasetPath, dataset_name="MelonDataset")
