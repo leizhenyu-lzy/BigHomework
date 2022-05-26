@@ -37,60 +37,67 @@ def generateDecisionTree(dataset, current_node, get_division_feature_method):
     # print(current_node.division_feature_id)
 
     # 根据最优划分特征，将样本集进行拆分
-    split_dict = dataset.splitSamplesList(division_feature_id=best_division_feature_id, sample_list=current_node.include_samples,
-                                          continuity_split_value=dataset.features_continuity[best_division_feature_id])
+    split_dict = dataset.splitSamplesList(division_feature_id=best_division_feature_id, samples_list=current_node.include_samples,
+                                          continuity_split_value=best_division_feature_value)
     # print(split_dict)
-    for feature_value in dataset.features_possible_values[best_division_feature_id]:  # 需要给该特征的每一个可能值都建立树节点，即使没有可能值
-        sub_node = DecisionTreeNode()  # 生成新的子节点
-        current_node.attachChildNode(sub_node, feature_value)  # 将子节点与当前节点进行连接
-        sub_node.available_features_id = sub_node_available_features
-        if split_dict.get(feature_value, 0):  # 如果拆分出的字典键值中有feature_value
-            sub_node.setIncludeSample(split_dict[feature_value])
-            generateDecisionTree(dataset, sub_node, get_division_feature_method)  # 递归调用
-        else:  # 如果拆分出的字典键值中没有feature_value
-            sub_node.final_label = most_possible_label_value
+
+    if dataset.features_continuity[best_division_feature_id]:  # 对于连续特征，只有bigger、smaller两个节点
+        current_node.continuous_feature_split_value = best_division_feature_value  # 设置连续特征的最佳划分值
+        # 设置smaller节点
+        smaller_sub_node = DecisionTreeNode()  # 添加smaller子节点
+        current_node.attachChildNode(smaller_sub_node, 'smaller')
+        smaller_sub_node.available_features_id = sub_node_available_features
+        smaller_sub_node.setIncludeSample(split_dict['smaller'])
+        generateDecisionTree(dataset, smaller_sub_node, get_division_feature_method)
+        # 设置bigger节点
+        bigger_sub_node = DecisionTreeNode()  # 添加bigger子节点
+        current_node.attachChildNode(bigger_sub_node, 'bigger')
+        bigger_sub_node.available_features_id = sub_node_available_features
+        bigger_sub_node.setIncludeSample(split_dict['bigger'])
+        generateDecisionTree(dataset, bigger_sub_node, get_division_feature_method)
+
+    else:  # 对于离散特征，需要将划分特征的每一个特征值都建立树节点
+        for feature_value in dataset.features_possible_values[best_division_feature_id]:  # 需要给该特征的每一个可能值都建立树节点，即使没有可能值
+            sub_node = DecisionTreeNode()  # 生成新的子节点
+            current_node.attachChildNode(sub_node, feature_value)  # 将子节点与当前节点进行连接
+            sub_node.available_features_id = sub_node_available_features
+            if split_dict.get(feature_value, 0):  # 如果拆分出的字典键值中有feature_value
+                sub_node.setIncludeSample(split_dict[feature_value])
+                generateDecisionTree(dataset, sub_node, get_division_feature_method)  # 递归调用
+            else:  # 如果拆分出的字典键值中没有feature_value，即没有出现过该种情况
+                sub_node.final_label = most_possible_label_value  # 作为叶子节点，final_label设为最可能的值
     return
 
 
 if __name__ == "__main__":
-    melon_dataset = Dataset(dataset_path=user.MelonDatasetPath, dataset_name=user.MelonDatasetName)
-    melon_dataset.comprehensiveInitializeDataset(continuity_list=[1, 1])
-    melon_dataset.printDatasetInfo()
+    # 创建数据集
+    dataset = Dataset(dataset_path=user.DatasetPath, dataset_name=user.DatasetName)
+    dataset.comprehensiveInitializeDataset(continuity_list=user.DatasetContinuityList)
+    # melon_dataset.printDatasetInfo()
 
-    # # 数据集操作
-    # melon_dataset = Dataset(dataset_path=user.MelonDatasetPath, dataset_name="MelonDataset2")
-    # melon_dataset.comprehensiveInitializeDataset()
-    #
-    # # 生成决策树
-    # user.printSeparateBar()
-    # print("Start generating a decision tree.")
-    # root_node = DecisionTreeNode()  # 创建根节点
-    # root_node.setIncludeSample([cnt for cnt in range(melon_dataset.samples_amount)])  # 树节点包含所有样本
-    # root_node.setAvailableFeaturesId([cnt for cnt in range(melon_dataset.features_number)])
-    # # root_node.setIncludeSample([cnt for cnt in range(10, 13)])  # 树节点包含的部分样本
-    # generateDecisionTree(dataset=melon_dataset, current_node=root_node,
-    #                      get_division_feature_method=user.get_division_feature_method)
-    # print("Finish generating a decision tree")
-    # user.printSeparateBar()
-    #
+    # 创建决策树
+    user.printSeparateBar()
+    print("Start generating a decision tree.")
+    root_node = DecisionTreeNode()  # 创建根节点
+    root_node.setIncludeSample([cnt for cnt in range(dataset.samples_amount)])  # 根节点包含所有样本
+    root_node.setAvailableFeaturesId([cnt for cnt in range(dataset.features_number)])  # 根节点拥有所有划分特征的选择权
+    # 生成决策树
+    generateDecisionTree(dataset=dataset, current_node=root_node, get_division_feature_method=user.get_division_feature_method)
+    print("Finish generating a decision tree")
+    user.printSeparateBar()
+
     # # 打印决策树信息广度优先方式方式，方便横向查看
-    # root_node.printDecisionTreeBreadthFirst()
+    root_node.printDecisionTreeBreadthFirst()
     # # 打印决策树信息深度优先方式方式，方便横向查看
     # # root_node.printDecisionTreeDepthFirst()
-    #
-    # decicion_tree_name = melon_dataset.dataset_name+user.get_division_feature_methods_name[user.get_division_feature_method]
-    # # print(decicion_tree_name)
-    #
-    # # 使用Graphviz库图形化展示决策树，并将图片进行保存
-    # tree_graph = viz.drawDecisionTree(root_node, melon_dataset.features_name, decicion_tree_name)
-    # tree_graph.view(cleanup=True)  # 清除除了png图片以外的其他多余文件
-    #
-    # # 随便给当前决策树一个样本，判断其label值
-    # # sample_final_label = root_node.getSampleLabelByDecisionTree(melon_dataset.features[14])
-    # # print(sample_final_label)
-    #
-    # confusion_matrix = root_node.getConfusionMatrixDict(melon_dataset)
-    # confusion_matrix_nparray = viz.dictConfusionMatrixToList(confusion_matrix)
-    # viz.drawConfusionMatrix(confusion_matrix_nparray, melon_dataset.getLabelsPossibleValuesList(),
-    #                         fig_name=decicion_tree_name+'ConfusionMatrix')
+
+    confusion_matrix_dict = root_node.getConfusionMatrixDict(dataset)  # 获得字典形式的混淆矩阵
+    confusion_matrix_nparray = viz.dictConfusionMatrixToNpArray(confusion_matrix_dict)  # 字典形式的混淆矩阵转为np.array形式
+    viz.drawConfusionMatrix(confusion_matrix_nparray, dataset.getLabelsPossibleValuesList(), fig_name=user.viz_decision_tree_name)
+
+    # 使用Graphviz库图形化展示决策树，并将图片进行保存
+    tree_graph = viz.drawDecisionTree(root_node, dataset.features_name, dataset.features_continuity, user.viz_decision_tree_name)
+    tree_graph.view(cleanup=True)  # 清除除了png图片以外的其他多余文件
+
+
 

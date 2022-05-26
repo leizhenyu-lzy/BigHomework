@@ -29,8 +29,8 @@ class DecisionTreeNode:
 
         self.division_feature_id = None  # 当前节点用于划分子节点的划分特征编号（单个数值）
         self.childnode_division_feature_values = []  # 子节点对应划分特征的特征值（特征值列表）
-        # （对于连续值，二分法，存放相同的值，默认左节点为bigger，右节点为smaller）
-        self.continue_feature_bigger_smaller = None  # 若父节点的划分特征为连续值，判断当前节点是对应bigger、smaller
+        # （对于连续值，二分法，存放相同的值，默认左节点为'smaller'，右节点为'bigger'）
+        self.continuous_feature_split_value = None  # 若当前的划分特征为连续值，用于记录最佳划分特征值
 
         self.include_samples = []  # 当前节点包含的样本编号（数值列表）
         self.available_features_id = []  # 可用的划分特征列表，从父节点的改成员变量删去父节点划分特征所得（数值列表）
@@ -40,12 +40,13 @@ class DecisionTreeNode:
     # 输出节点信息（节点都用编号表示）
     def getNodeInfo(self):
         UserToolFunction.printSeparateBar()
-        print("node_id          : ", self.node_id)
-        print("parentnode       : ", self.parentnode_id)
-        print("childnodes_list  : ", self.childnodes_id_list)
-        print("div_feature_id   : ", self.division_feature_id)
-        print("include_samples  : ", self.include_samples)
-        print("final_label      : ", self.final_label)
+        print("node_id              : ", self.node_id)
+        print("parentnode           : ", self.parentnode_id)
+        print("childnodes_list      : ", self.childnodes_id_list)
+        print("div_feature_id       : ", self.division_feature_id)
+        print("continue_split_value : ", self.continuous_feature_split_value)
+        print("include_samples      : ", self.include_samples)
+        print("final_label          : ", self.final_label)
         UserToolFunction.printSeparateBar()
 
     # 给当前节点添加子节点，同时更新当前节点及后续节点中的指向信息
@@ -99,20 +100,27 @@ class DecisionTreeNode:
         else:  # 没有子节点
             return False
 
-    # 获取样本通过决策树得到的结果(pending:对于连续值的处理)
-    def getSampleLabelByDecisionTree(self, sample_features_list):
-        if len(self.childnodes_id_list):  # 当前节点不为叶节点，需要进行细分
-            sample_division_feature_value = sample_features_list[self.division_feature_id]  # 获取该样本对应当前节点的划分特征的值
-            division_feature_value_idx = self.childnode_division_feature_values.\
-                index(sample_division_feature_value)  # 获取样本划分特征的值所对应的子节点划分特征的值的列表中的序号，即后续递归使用的子节点在当前节点的子节点列表中的序号
-            use_childnode = self.childnodes_list[division_feature_value_idx]
-            final_label = use_childnode.getSampleLabelByDecisionTree(sample_features_list)
-            # use_sub_node = self.childnodes_list[]
+    # 获取样本通过决策树得到的结果（递归方式）(pending:对于连续值的处理)（传入样本的全部特征的值）
+    def getSampleLabelByDecisionTree(self, sample_features_list, features_continuity_list):
+        if not self.isLeaf():  # 当前节点不为叶节点，需要进行细分
+            if features_continuity_list[self.division_feature_id] == 1:  # 当前节点的划分特征为连续特征
+                if sample_features_list[self.division_feature_id] <= self.continuous_feature_split_value:  # 特征值不大于划分值
+                    use_childnode = self.childnodes_list[0]  # 选择使用左节点（规定左节点为smaller）
+                else:
+                    use_childnode = self.childnodes_list[1]  # 选择使用右节点（规定右节点为bigger）
+                final_label = use_childnode.getSampleLabelByDecisionTree(sample_features_list, features_continuity_list)
+            else:  # 当前节点的划分特征为离散特征
+                sample_division_feature_value = sample_features_list[self.division_feature_id]  # 获取该样本对应当前节点的划分特征的值
+                # 获取样本划分特征的值所对应的子节点划分特征的值的列表中的序号，即后续递归使用的子节点在当前节点的子节点列表中的序号
+                division_feature_value_idx = self.childnode_division_feature_values.index(sample_division_feature_value)
+                use_childnode = self.childnodes_list[division_feature_value_idx]
+                final_label = use_childnode.getSampleLabelByDecisionTree(sample_features_list, features_continuity_list)
+                # use_sub_node = self.childnodes_list[]
             return final_label
         else:  # 当前节点为叶节点，当前节点的final_label即为样本的分类最终结果
             return self.final_label
 
-    # 获取当前决策树混淆矩阵（字典形式）
+    # 获取当前决策树混淆矩阵（字典形式）（对于是否连续不关心）
     def getConfusionMatrixDict(self, dataset):
         # 先创建字典的字典，外层字典用于表示实际label，内层字典用于表示通过决策树得到的label
         confusion_matrix = {}
@@ -120,12 +128,12 @@ class DecisionTreeNode:
             confusion_matrix[outer_label_value] = {}
             for inner_label_value in dataset.labels_possible_values:
                 confusion_matrix[outer_label_value][inner_label_value] = 0
-
+        # 对每一个样本进行划分，按照实际label和决策树给出的label放入相应的混淆矩阵中
         for sample_id in range(dataset.samples_amount):
-            outer_label_value = dataset.labels[sample_id]
-            inner_label_value = self.getSampleLabelByDecisionTree(dataset.features[sample_id])
+            outer_label_value = dataset.labels[sample_id]  # 实际label
+            # 决策树给出的label（传入一个样本的全部特征）
+            inner_label_value = self.getSampleLabelByDecisionTree(dataset.features[sample_id], dataset.features_continuity)
             confusion_matrix[outer_label_value][inner_label_value] += 1
-
         return confusion_matrix
 
 
