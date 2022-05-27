@@ -6,7 +6,7 @@
 import UserToolFunction as user
 from DecisionTreeNodeClass import DecisionTreeNode
 from DatasetClass import Dataset
-import DecisionTreeVisiualize as viz
+import DecisionTreeVisualize as vizg
 
 
 def generateDecisionTree(dataset, current_node, get_division_feature_method):

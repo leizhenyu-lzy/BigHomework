@@ -1,7 +1,7 @@
 # 1950083 自动化 刘智宇
 import graphviz
 from graphviz import Digraph
-from DecisionTreeVisiualize import *
+from DecisionTreeVisualize import *
 
 if __name__ == "__main__":
     dot = Digraph(comment='The Test Table', format='png')
