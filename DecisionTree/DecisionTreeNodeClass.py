@@ -121,7 +121,7 @@ class DecisionTreeNode:
             return self.final_label
 
     # 获取当前决策树混淆矩阵（字典形式）（对于是否连续不关心）
-    def getConfusionMatrixDict(self, dataset):
+    def getConfusionMatrixDict(self, dataset, root_node, test_list=None):
         # 先创建字典的字典，外层字典用于表示实际label，内层字典用于表示通过决策树得到的label
         confusion_matrix = {}
         for outer_label_value in dataset.labels_possible_values:
@@ -129,7 +129,13 @@ class DecisionTreeNode:
             for inner_label_value in dataset.labels_possible_values:
                 confusion_matrix[outer_label_value][inner_label_value] = 0
         # 对每一个样本进行划分，按照实际label和决策树给出的label放入相应的混淆矩阵中
-        for sample_id in range(dataset.samples_amount):
+
+        if test_list is None:  # 如果没有传入，则使用根节点的全部数据
+            use_samples = root_node.include_samples
+        else:  # 传入测试样本集编号列表，则使用（对于iris等拆分了的数据集）
+            use_samples = test_list
+
+        for sample_id in use_samples:
             outer_label_value = dataset.labels[sample_id]  # 实际label
             # 决策树给出的label（传入一个样本的全部特征）
             inner_label_value = self.getSampleLabelByDecisionTree(dataset.features[sample_id], dataset.features_continuity)

@@ -2,6 +2,7 @@
 
 # Thirdparty
 import pandas as pd
+import random
 
 # User
 import UserToolFunction as user
@@ -29,6 +30,9 @@ class Dataset:
 
         self.features_possible_values = []  # 各个特征的全部可能的特征值，列表元素为字典，字典内为feature的值及对应个数
         self.labels_possible_values = {}  # 标签的可能值（字典,labels可能值和对应数量）
+
+        self.train_sub_dataset_list = []
+        self.test_sub_dataset_list = []
 
         # self.available_features_number_list = []  # not const
 
@@ -111,8 +115,9 @@ class Dataset:
     def countLabelsPossibleValuesByList(self, samples_list=None):
         if samples_list is None:
             samples_list = [cnt for cnt in range(self.samples_amount)]
-        # if len(samples_list) == 0:
-        #     print("empty")
+        if len(samples_list) == 0:  # 如果出现划分属性最大值有多个，会导致bigger部分没有值
+            return {}
+        # print(samples_list)
         labels_possible_values_dict = {self.labels[samples_list[0]]: 1}
         for sample_number in samples_list[1:]:  # 遍历给定样本列表的label
             new_label_value_flag = 1
@@ -195,7 +200,7 @@ class Dataset:
         # 先计算整体的信息熵
         overall_information_entropy = self.computeInformationEntropy(samples_list)
         entropy_gain = overall_information_entropy
-
+        # print('division_feature_id: ', division_feature_id)
         if self.features_continuity[division_feature_id]:  # 连续特征
             feature_values_list = []
             for sample_id in samples_list:
@@ -357,14 +362,27 @@ class Dataset:
         return labels_possible_values_list
 
     # 拆分数据集和训练集(pending)
-    def seperateTrainSetAndTestSet(self, train_list=None):
-        pass
+    def seperateTrainSetAndTestSet(self, train_dataset_numbers=0):
+        if train_dataset_numbers > self.samples_amount:
+            quit(-1)
+        else:
+            self.train_sub_dataset_list = []
+            self.test_sub_dataset_list = [i for i in range(self.samples_amount)]  # 测试集挑剩下的
+            while len(self.train_sub_dataset_list) < train_dataset_numbers:
+                sample_idx = random.randrange(0, self.samples_amount)  # 使用randrange，上开下闭
+                if sample_idx not in self.train_sub_dataset_list:
+                    self.train_sub_dataset_list.append(sample_idx)
+            for sample_idx in self.train_sub_dataset_list:
+                self.test_sub_dataset_list.remove(sample_idx)
+            print("train_sub_dataset_list   : ", self.train_sub_dataset_list)
+            print("test_sub_dataset_list    : ", self.test_sub_dataset_list)
 
 
 if __name__ == "__main__":
-    melon_dataset = Dataset(dataset_path=user.MelonDatasetPath, dataset_name=user.MelonDatasetName)
-    melon_dataset.comprehensiveInitializeDataset(continuity_list=[1, 1])
-    melon_dataset.printDatasetInfo()
-
-    # melon_dataset.computeOneFeatureEntropyGain(division_feature_id=0)
-    melon_dataset.selectDivisionFeatureByEntropyGain()
+    # melon_dataset = Dataset(dataset_path=user.DatasetPath, dataset_name=user.DatasetName)
+    # melon_dataset.comprehensiveInitializeDataset(continuity_list=[1, 1])
+    # melon_dataset.printDatasetInfo()
+    #
+    # # melon_dataset.computeOneFeatureEntropyGain(division_feature_id=0)
+    # melon_dataset.selectDivisionFeatureByEntropyGain()
+    pass

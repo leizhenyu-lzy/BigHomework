@@ -28,8 +28,9 @@ def generateDecisionTree(dataset, current_node, get_division_feature_method):
     # 得到最优划分特征编号，以及最优划分值（连续特征独有）
     best_division_feature_id, best_division_feature_value = dataset.getDivisionFeature(current_node.available_features_id,
                                                                                        current_node.include_samples, get_division_feature_method)
-    # best_division_feature_name = dataset.features_name[best_division_feature_id]
-    # print(best_division_feature_name)
+    best_division_feature_name = dataset.features_name[best_division_feature_id]
+    print("best_division_feature_name: ", best_division_feature_name)
+
     sub_node_available_features = current_node.available_features_id.copy()
     if not dataset.features_continuity[best_division_feature_id]:  # 对于非连续特征，作为划分属性后，其子节点不应再使用
         sub_node_available_features.remove(best_division_feature_id)  # 选出了最佳划分特征，后面的决策应不受该特征影响
@@ -70,10 +71,12 @@ def generateDecisionTree(dataset, current_node, get_division_feature_method):
 
 
 if __name__ == "__main__":
+    # 西瓜数据集
     # 创建数据集
     dataset = Dataset(dataset_path=user.DatasetPath, dataset_name=user.DatasetName)
     dataset.comprehensiveInitializeDataset(continuity_list=user.DatasetContinuityList)
-    # melon_dataset.printDatasetInfo()
+    dataset.printDatasetInfo()
+    dataset.seperateTrainSetAndTestSet()
 
     # 创建决策树
     user.printSeparateBar()
@@ -87,17 +90,44 @@ if __name__ == "__main__":
     user.printSeparateBar()
 
     # # 打印决策树信息广度优先方式方式，方便横向查看
-    root_node.printDecisionTreeBreadthFirst()
-    # # 打印决策树信息深度优先方式方式，方便横向查看
+    # root_node.printDecisionTreeBreadthFirst()
+    # 打印决策树信息深度优先方式方式，方便横向查看
     # # root_node.printDecisionTreeDepthFirst()
-
-    confusion_matrix_dict = root_node.getConfusionMatrixDict(dataset)  # 获得字典形式的混淆矩阵
-    confusion_matrix_nparray = viz.dictConfusionMatrixToNpArray(confusion_matrix_dict)  # 字典形式的混淆矩阵转为np.array形式
-    viz.drawConfusionMatrix(confusion_matrix_nparray, dataset.getLabelsPossibleValuesList(), fig_name=user.viz_decision_tree_name)
 
     # 使用Graphviz库图形化展示决策树，并将图片进行保存
     tree_graph = viz.drawDecisionTree(root_node, dataset.features_name, dataset.features_continuity, user.viz_decision_tree_name)
     tree_graph.view(cleanup=True)  # 清除除了png图片以外的其他多余文件
 
+    confusion_matrix_dict = root_node.getConfusionMatrixDict(dataset, root_node)  # 获得字典形式的混淆矩阵
+    confusion_matrix_nparray = viz.dictConfusionMatrixToNpArray(confusion_matrix_dict)  # 字典形式的混淆矩阵转为np.array形式
+    viz.drawConfusionMatrix(confusion_matrix_nparray, dataset.getLabelsPossibleValuesList(), fig_name=user.viz_decision_tree_name)
 
-
+    # # IRIS数据集
+    # # 创建数据集
+    # dataset = Dataset(dataset_path=user.DatasetPath, dataset_name=user.DatasetName)
+    # dataset.comprehensiveInitializeDataset(continuity_list=user.DatasetContinuityList)
+    # dataset.printDatasetInfo()
+    # dataset.seperateTrainSetAndTestSet(user.TrainSamplesAmount)  # 拆分测试集、训练集（流出法）
+    #
+    # # 创建决策树
+    # user.printSeparateBar()
+    # print("Start generating a decision tree.")
+    # root_node = DecisionTreeNode()  # 创建根节点
+    # root_node.setIncludeSample(dataset.train_sub_dataset_list)  # 根节点包含训练样本
+    # root_node.setAvailableFeaturesId([cnt for cnt in range(dataset.features_number)])  # 根节点拥有所有划分特征的选择权
+    # generateDecisionTree(dataset=dataset, current_node=root_node, get_division_feature_method=user.get_division_feature_method)  # 生成决策树
+    # print("Finish generating a decision tree")
+    # user.printSeparateBar()
+    #
+    # # # 打印决策树信息广度优先方式方式，方便横向查看
+    # root_node.printDecisionTreeBreadthFirst()
+    # # # 打印决策树信息深度优先方式方式，方便横向查看
+    # # # root_node.printDecisionTreeDepthFirst()
+    #
+    # confusion_matrix_dict = root_node.getConfusionMatrixDict(dataset, root_node, dataset.test_sub_dataset_list)  # 获得字典形式的混淆矩阵
+    # confusion_matrix_nparray = viz.dictConfusionMatrixToNpArray(confusion_matrix_dict)  # 字典形式的混淆矩阵转为np.array形式
+    # viz.drawConfusionMatrix(confusion_matrix_nparray, dataset.getLabelsPossibleValuesList(), fig_name=user.viz_decision_tree_name)
+    #
+    # # 使用Graphviz库图形化展示决策树，并将图片进行保存
+    # tree_graph = viz.drawDecisionTree(root_node, dataset.features_name, dataset.features_continuity, user.viz_decision_tree_name)
+    # tree_graph.view(cleanup=True)  # 清除除了png图片以外的其他多余文件

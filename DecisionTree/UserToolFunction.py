@@ -11,9 +11,9 @@ dataset_index_col = None  # 默认是没有index_col
 # 常量定义
 DatasetsFolder = "Datasets"
 
-# DatasetName = "MelonDataset2"
-# DatasetPath = os.path.join(DatasetsFolder, "MelonDataset2.txt")
-# DatasetContinuityList = None
+DatasetName = "MelonDataset2"
+DatasetPath = os.path.join(DatasetsFolder, "MelonDataset2.txt")
+DatasetContinuityList = None
 
 # DatasetName = "MelonDataset2alpha"
 # DatasetPath = os.path.join(DatasetsFolder, "MelonDataset2alpha.txt")
@@ -27,15 +27,16 @@ DatasetsFolder = "Datasets"
 # DatasetPath = os.path.join(DatasetsFolder, "MelonDataset3alpha.txt")
 # DatasetContinuityList = [1, 1]
 
-DatasetName = "IrisDataset"
-DatasetPath = os.path.join(DatasetsFolder, "IrisDataset.csv")
-DatasetContinuityList = [1, 1, 1, 1]
+# DatasetName = "IrisDataset"
+# DatasetPath = os.path.join(DatasetsFolder, "IrisDataset.csv")
+# DatasetContinuityList = [1, 1, 1, 1]
+# TrainSamplesAmount = 70
 
 # 全局变量定义
 entropy_gain = 0
 gain_ratio = 1
 gini_index = 2
-get_division_feature_method = entropy_gain
+get_division_feature_method = gini_index  # 注意对于连续值，目前只支持entropy_gain
 get_division_feature_methods_name = ["ByEntropyGain", "ByGainRatio", "GainIndex"]
 
 viz_decision_tree_name = DatasetName + get_division_feature_methods_name[get_division_feature_method]
@@ -66,4 +67,4 @@ def pLog2p(possibility):
 
 
 if __name__ == "__main__":
-    printSeparateBar()
+    pass

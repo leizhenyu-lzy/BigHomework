@@ -41,13 +41,13 @@ def setGraphNodeAttribute(graph, node_type):
 def drawOneTreeNode(graph, current_node, features_name_list, features_continuity):
     if current_node.isLeaf():  # 是叶节点
         setGraphNodeAttribute(graph, 'leaf')  # 设置叶节点属性
-        graph.node(name=str(current_node.node_id), label=current_node.final_label)
+        graph.node(name=str(current_node.node_id), label=str(current_node.final_label))
     else:  # 不是叶节点
         setGraphNodeAttribute(graph, 'middle')  # 设置中间节点属性
         if features_continuity[current_node.division_feature_id] == 1:  # 连续特征
-            graph.node(name=str(current_node.node_id), label=features_name_list[current_node.division_feature_id] + ' </> ' + "%.4f" % current_node.continuous_feature_split_value)
+            graph.node(name=str(current_node.node_id), label=str(features_name_list[current_node.division_feature_id]) + ' </> ' + "%.4f" % current_node.continuous_feature_split_value)
         else:  # 离散特征
-            graph.node(name=str(current_node.node_id), label=features_name_list[current_node.division_feature_id] + ' = ?')
+            graph.node(name=str(current_node.node_id), label=str(features_name_list[current_node.division_feature_id]) + ' = ?')
     return
 
 # 责画所有子节点和连线
@@ -59,7 +59,7 @@ def drawSubNodesAndEdges(graph, current_node, features_name_list, features_conti
         # graph.view()
         # 画连线
         graph.edge(str(current_node.node_id), str(childnode.node_id),
-                   label=current_node.childnode_division_feature_values[childnode_idx])
+                   label=str(current_node.childnode_division_feature_values[childnode_idx]))
         # print(current_node.childnode_division_feature_values[childnode_idx])
 
 # 画整颗树（bfs方式）
