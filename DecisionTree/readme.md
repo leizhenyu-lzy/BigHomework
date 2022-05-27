@@ -8,7 +8,7 @@
 
 [项目地址 Github](https://github.com/leizhenyu-lzy/BigHomework/tree/main/DecisionTree)
 
-[项目使用视频介绍 B站]()
+[项目使用视频介绍 B站](https://www.bilibili.com/video/BV1yY4y1B7zr)
 
 # 项目文件夹结构说明
 
