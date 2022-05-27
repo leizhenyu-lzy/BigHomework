@@ -361,7 +361,7 @@ class Dataset:
             labels_possible_values_list.append(label_value)
         return labels_possible_values_list
 
-    # 拆分数据集和训练集(pending)
+    # 拆分数据集和训练集
     def seperateTrainSetAndTestSet(self, train_dataset_numbers=0):
         if train_dataset_numbers > self.samples_amount:
             quit(-1)

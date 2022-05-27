@@ -6,7 +6,7 @@
 import UserToolFunction as user
 from DecisionTreeNodeClass import DecisionTreeNode
 from DatasetClass import Dataset
-import DecisionTreeVisualize as vizg
+import DecisionTreeVisualize as viz
 
 
 def generateDecisionTree(dataset, current_node, get_division_feature_method):
@@ -98,11 +98,11 @@ if __name__ == "__main__":
     tree_graph = viz.drawDecisionTree(root_node, dataset.features_name, dataset.features_continuity, user.viz_decision_tree_name)
     tree_graph.view(cleanup=True)  # 清除除了png图片以外的其他多余文件
 
-    confusion_matrix_dict = root_node.getConfusionMatrixDict(dataset, root_node)  # 获得字典形式的混淆矩阵
+    confusion_matrix_dict = root_node.getConfusionMatrixDict(dataset)  # 获得字典形式的混淆矩阵
     confusion_matrix_nparray = viz.dictConfusionMatrixToNpArray(confusion_matrix_dict)  # 字典形式的混淆矩阵转为np.array形式
     viz.drawConfusionMatrix(confusion_matrix_nparray, dataset.getLabelsPossibleValuesList(), fig_name=user.viz_decision_tree_name)
 
-    # # IRIS数据集
+    # # IRIS数据集或其他需要进行拆分test、train的数据集
     # # 创建数据集
     # dataset = Dataset(dataset_path=user.DatasetPath, dataset_name=user.DatasetName)
     # dataset.comprehensiveInitializeDataset(continuity_list=user.DatasetContinuityList)
@@ -124,7 +124,7 @@ if __name__ == "__main__":
     # # # 打印决策树信息深度优先方式方式，方便横向查看
     # # # root_node.printDecisionTreeDepthFirst()
     #
-    # confusion_matrix_dict = root_node.getConfusionMatrixDict(dataset, root_node, dataset.test_sub_dataset_list)  # 获得字典形式的混淆矩阵
+    # confusion_matrix_dict = root_node.getConfusionMatrixDict(dataset, dataset.test_sub_dataset_list)  # 获得字典形式的混淆矩阵
     # confusion_matrix_nparray = viz.dictConfusionMatrixToNpArray(confusion_matrix_dict)  # 字典形式的混淆矩阵转为np.array形式
     # viz.drawConfusionMatrix(confusion_matrix_nparray, dataset.getLabelsPossibleValuesList(), fig_name=user.viz_decision_tree_name)
     #
