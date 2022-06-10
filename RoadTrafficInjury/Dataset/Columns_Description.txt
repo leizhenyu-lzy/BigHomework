@@ -1,0 +1,484 @@
+# Complete list of fields with details of their content
+
+## sample_id
+Identification number of the sample in verify or test dataset
+
+## Num_Acc
+Identification number of the accident.
+
+## jour
+Day of the accident.
+
+## mois
+Month of the accident.
+
+## an
+Year of accident.
+
+## hrmn
+Hour and minutes of the accident.
+This one is tricky, it correspond to a percentage of 24h (your turn to convert it into day time)
+
+## lum
+Light: lighting conditions in which the accident occurred:
+	1. Full day
+	2. Twilight or dawn
+	3. Night without public lighting
+	4. Night with public lighting not on
+	5. Night with public lighting on
+
+## dep
+Department: Code INSEE (National Institute of Statistics and Economic Studies) of department (2A Corse-du-Sud. 2B Haute-Corse).
+
+## com
+Municipality: The municipality number is a code given by INSEE. 
+				The code is made up of the code INSEE of the department followed by 3 digits.
+
+## agg
+Location :
+	1. Outside agglomeration
+	2. In built-up areas
+
+## int
+Intersection:
+	1. Excluding intersection
+	2. Intersection in X
+	3. T-intersection
+	4. Y intersection
+	5. Intersection with more than 4 branches
+	6. Roundabout
+	7. Place
+	8. Level crossing
+	9. Other intersection 
+
+## atm
+Atmospheric conditions:
+	-1. Not specified
+	1. Normal
+	2. Light rain
+	3. Heavy rain
+	4. Snow. hail
+	5. Fog. smoke
+	6. Strong wind. storm
+	7. Dazzling weather
+	8. Cloudy weather
+	9. Other
+
+## col
+Collision type:
+	-1. Not specified
+	1. Two vehicles. frontal
+	2. Two vehicles. from the rear
+	3. Two vehicles. from the side
+	4. Three vehicles and more. in a chain
+	5. Three or more vehicles. multiple collisions
+	6. Other collision 
+	7. No collision
+
+## adr
+Postal address: variable entered for accidents occurring in built-up areas.
+
+## lat
+Latitude
+
+## Long
+Longitude 
+
+## catr
+Road category:
+	1. Highway
+	2. National road
+	3. Departmental road
+	4. Communal roads
+	5. Outside the public network
+	6. Parking lot open to public traffic
+	7. Urban metropolis roads
+	9. other
+
+## voie
+Route number.
+
+## V1
+Numerical index of the road number (example: 2 bis, 3 ter etc.). 
+
+## V2
+Alphanumeric road index letter.
+
+## circ
+Traffic regime:
+	-1. Not specified
+	1. One way
+	2. Bidirectional
+	3. A separate carriageway
+	4. With variable assignment channels
+
+## nbv
+Total number of traffic lanes.
+
+## vosp
+Indicates the existence of a reserved lane, regardless of whether or not the accident took place on this way.
+	-1. Not specified
+	0. Not applicable
+	1. Cycle path
+	2. Cycle lane
+	3. Reserved lane
+
+## prof
+Longitudinal profile describes the gradient of the road at the location of the accident:
+	-1. Not specified
+	1. Flat
+	2. Slope
+	3. hilltop
+	4. Bottom of coast
+
+## pr
+Number of the associated PR (number of the upstream terminal). 
+The value -1 means that the PR is not informed.
+
+## pr1
+Distance in meters from the PR (in relation to the upstream terminal). 
+The value -1 means that the PR is not informed.
+
+## plan
+Plan layout:
+	-1. Not specified
+	1. rectilinear part
+	2. In a curve to the left
+	3. In a curve to the right
+	4. In "S"
+
+## lartpc
+Width of the central reservation (TPC) if it exists (in m).
+
+## larrout
+Width of the roadway used for vehicular traffic 
+is not included in the stopping strips emergency, TPC and parking spaces (in m).
+
+## surf
+Surface condition: 
+	-1. Not specified
+	1. Normal
+	2. Wet
+	3. Puddles
+	4. Flooded
+	5. Snowy
+	6. Mud
+	7. Icy
+	8. Fat. oil
+	9. Other
+
+## infra
+Development. Infrastructure:
+	-1. Not specified
+	0. None
+	1. Underground. tunnel
+	2. Bridge. flyover
+	3. Exchanger or connection sling
+	4. Railroad
+	5. Crossroads
+	6. Pedestrian zone
+	7. Toll zone
+	8. Site
+	9. Others
+
+## situ
+Situation of the accident:
+	-1. Not specified
+	0. None
+	1. On the road
+	2. On emergency lane
+	3. On the shoulder
+	4. On the sidewalk
+	5. On a cycle path
+	6. On other special track
+	8. Others
+
+## vma
+Maximum authorized speed at the scene and at the time of the accident. 
+
+## Num_Veh
+Identifier of the vehicle taken back for each of the users occupying this vehicle (including pedestrians who are attached to the 
+vehicles which collided with them). Alphanumeric code. 
+
+## senc
+Flow direction :
+	-1. Not specified
+	0. Unknown
+	1. PK or PR or increasing postal address number
+	2. PK or PR or decreasing postal address number
+	3. Lack of reference
+	
+## catv
+Vehicle category:
+	00. Not determinable
+	01. Bicycle
+	02. Moped &lt;50cm3
+	03. Cart (Quadricycle with bodywork motor) (formerly "cart or motor tricycle")
+	04. Reference not used since 2006 (registered scooter)
+	05. Reference unused since 2006 (motorcycle)
+	06. Reference unused since 2006 (sidecar)
+	07. VL only
+	08. Reference unused since 2006 (VL + caravan)
+	09. Reference not used since 2006 (light vehicles + trailer)
+	10. VU only 1.5T &lt;= PTAC &lt;= 3.5T with or without trailer (formerly VU only 1.5T &lt;= PTAC &lt;= 3.5T)
+	11. Reference not used since 2006 (VU (10) + caravan)
+	12. Reference not used since 2006 (VU (10) + trailer)
+	13. PL only 3.5T <PTCA <= 7,5T 
+	14. PL only > 7.5T
+	15. PL> 3,5T + trailer
+	16. Road tractor only
+	17. Road tractor + semi-trailer
+	18. Reference not used since 2006 (public transport)
+	19. Reference not used since 2006 (tram)
+	20. Special gear
+	21. Farm tractor
+	30. Scooter <50 cm3
+	31. Motorcycle> 50 cm3 and <= 125 cm3
+	32. Scooter> 50 cm3 and <= 125 cm3
+	33. Motorcycle> 125 cm3
+	34. Scooter> 125 cm3
+	35. Light quad <= 50 cm3 (Quadricycle without bodywork engine)
+	36. Heavy quad> 50 cm3 (Quadricycle without bodywork engine)
+	37. Bus
+	38. Coach
+	39. Train
+	40. Tram
+	41. 3WD <= 50 cm3
+	42. 3WD> 50 cm3 <= 125 cm3
+	43. 3WD> 125 cm3
+	50. EDP with motor
+	60. EDP without motor
+	80. VAE
+	99. Other vehicle 
+
+## obs
+Fixed obstacle struck:
+	-1. Not specified
+	0. Not applicable
+	1. Parked vehicle
+	2. Tree
+	3. Metal slide
+	4. Concrete slide
+	5. Other slide
+	6. Building, wall, bridge pier
+	7. Vertical signage support or emergency call station
+	8. Post
+	9. Street furniture
+	10. Parapet
+	11. Island, refuge, upper terminal
+	12. Sidewalk edge
+	13. Ditch, embankment, rock face
+	14. Other fixed obstacle on the road
+	15. Other fixed obstacle on sidewalk or shoulder
+	16. Clearance of the roadway without obstacle
+	17. Nozzle. aqueduct head
+
+## obsm
+Movable obstacle struck:
+	-1. Not specified
+	0. None
+	1. Pedestrian
+	2. Vehicle
+	4. Rail vehicle
+	5. Domestic animal
+	6. Wild animal
+	9. Other 
+
+## choc
+Initial shock point:
+	-1. Not specified
+	0. None
+	1. Before
+	2. Right front
+	3. Front left
+	4. Rear
+	5. Right back
+	6. Left rear
+	7. Right side
+	8. Left side
+	9. Multiple shocks (rolls) 
+
+## manv
+Main maneuver before the accident:
+	-1. Not specified
+	0. Unknown
+	1. Without change of direction
+	2. Same direction, same row
+	3. Between 2 lines
+	4. In reverse
+	5. In the wrong way
+	6. Crossing the central reservation
+	7. In the bus lane, in the same direction
+	8. In the bus lane, in the opposite direction
+	9. By inserting
+	10. By making a U-turn on the road
+Changing lane
+	11. Left
+	12. Right
+Deported
+	13. Left
+	14. Right
+Turning
+	15. Left
+	16. Right
+Exceeding
+	17. Left
+	18. Right
+Various
+	19. Crossing the road
+	20. Parking maneuver
+	21. Avoidance maneuver
+	22. Door opening
+	23. Stopped (except parking)
+	24. Parked (with occupants
+	25. Traveling on sidewalk
+	26. Other maneuvers 
+
+## motor
+Vehicle engine type:
+	-1. Not specified
+	0. Unknown
+	1. Hydrocarbons
+	2. Electric hybrid
+	3. Electric
+	4. Hydrogen
+	5. Human
+	6. Other 
+
+## occutc
+Number of occupants in public transport. 
+
+## id_vehicule
+Unique identifier of the vehicle used for each user occupying this vehicle (including
+pedestrians who are attached to the vehicles which collided with them). Numerical code. 
+
+## Num_Veh
+Identifier of the vehicle taken back for each of the users occupying this vehicle 
+(including pedestrians who are attached to the vehicles which collided with 
+them). Alphanumeric code. 
+
+## place
+Used to locate the space occupied in the vehicle by the user at the time of the accident
+Check on this link for the pattern : https://ibb.co/NsTxbXP
+
+## catu
+User category:
+	1. Driver
+	2. Passenger
+	3. Pedestrian 
+
+## grav
+Severity of user injury, injured users are classified into three categories of
+victims plus unharmed:
+	1. Unharmed
+	2. Killed
+	3. Injured hospitalized
+	4. Slightly injured 
+
+## sexe
+Driver gender:
+	1. Male
+	2. Female
+
+## An_nais
+Year of birth of the driver
+
+## trajet
+Reason for travel at the time of the accident:
+	-1. Not specified
+	0. Not specified
+	1. Home. work
+	2. Home. school
+	3. Shopping. shopping
+	4. Professional use
+	5. Walk. leisure
+	9. Other  
+
+
+
+Security equipment until 2018 was divided into 2 variables: existence and use.
+From 2019, this concerns use with up to 3 possible devices for the same user
+(especially for motorcyclists whose helmets and gloves are compulsory). 
+
+
+## secu1
+The character intelligence indicates the presence and use of safety equipment:
+	-1. Not specified
+	0. No equipment
+	1. Belt
+	2. Helmet
+	3. Children's device
+	4. reflective vest
+	5. Airbag (2WD / 3WD)
+	6. Gloves (2WD / 3WD)
+	7. Gloves + Airbag (2WD / 3WD)
+	8. Not determinable
+	9. Other
+
+## secu2
+The character intelligence indicates the presence and use of safety equipment:
+	-1. Not specified
+	0. No equipment
+	1. Belt
+	2. Helmet
+	3. Children's device
+	4. reflective vest
+	5. Airbag (2WD / 3WD)
+	6. Gloves (2WD / 3WD)
+	7. Gloves + Airbag (2WD / 3WD)
+	8. Not determinable
+	9. Other
+
+## secu3
+The character intelligence indicates the presence and use of safety equipment:
+	-1. Not specified
+	0. No equipment
+	1. Belt
+	2. Helmet
+	3. Children's device
+	4. reflective vest
+	5. Airbag (2WD / 3WD)
+	6. Gloves (2WD / 3WD)
+	7. Gloves + Airbag (2WD / 3WD)
+	8. Not determinable
+	9. Other
+
+## locp
+Localisation du piéton :
+	-1. Non renseigné
+	0. Sans objet
+Sur chaussée :
+	1. A + 50 m du passage piéton
+	2. A. 50 m du passage piéton
+Sur passage piéton :
+	3. Sans signalisation lumineuse
+	4. Avec signalisation lumineuse
+Divers :
+	5. Sur trottoir
+	6. Sur accotement
+	7. Sur refuge ou BAU
+	8. Sur contre allée
+	9. Inconnue 
+
+## actp
+Pedestrian action:
+	-1. Not specified
+Moving
+	0. Not specified or not applicable
+	1. Direction of colliding vehicle
+	2. Opposite direction of the vehicle
+Various
+	3. Crossing
+	4. Masked
+	5. Playing. running
+	6. With animal
+	9. Other
+	A. Get on / off the vehicle
+	B. Unknown 
+
+## etatp
+This variable is used to specify whether the injured pedestrian was alone or not:
+	-1. Not specified
+	1. Alone
+	2. Accompanied
+	3. In a group 
