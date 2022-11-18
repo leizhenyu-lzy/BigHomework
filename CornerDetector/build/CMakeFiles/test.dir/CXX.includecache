@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/lzy/Project/HarrisCornerDetector/testOpenCV.cpp
+iostream
+-
+opencv4/opencv2/opencv.hpp
+-
+

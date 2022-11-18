@@ -1,0 +1,51 @@
+﻿  TestGridmap.cpp
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(123,23): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=jsonxx::Number
+          ]
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(124,24): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=jsonxx::Number
+          ]
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(159,26): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=jsonxx::Number
+          ]
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(167,32): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=jsonxx::Number
+          ]
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(173,29): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=jsonxx::Number
+          ]
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(174,29): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=jsonxx::Number
+          ]
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(194,40): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(198,44): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(200,39): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(202,100): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(202,100): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(248,74): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(247,73): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(246,90): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(245,123): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(253,93): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(254,96): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(255,93): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(256,96): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(259,93): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(260,96): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(387,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(435,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(439,34): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\jimazeyu\Desktop\3dVisualization\OpenGL\src\tests\TestGridmap.cpp(493,27): warning C4018: '<': signed/unsigned mismatch
+  OpenGL.vcxproj -> C:\Users\jimazeyu\Desktop\3dVisualization\Debug\OpenGL.exe

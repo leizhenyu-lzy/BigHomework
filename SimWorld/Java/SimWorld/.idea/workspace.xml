@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a983d1b1-f646-459f-8851-59dc28954ee9" name="默认变更列表" comment="update">
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/release/app-release.apk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/release/output-metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/androidTest/java/com/lzy/trysensor/ExampleInstrumentedTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/java/com/lzy/trysensor/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/mipmap-hdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/mipmap-mdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/values-night/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/values/colors.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/values/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/xml/backup_rules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/main/res/xml/data_extraction_rules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/app/src/test/java/com/lzy/trysensor/ExampleUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/TrySensor/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/androidTest/java/com/lzy/usesensors/ExampleInstrumentedTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/java/com/lzy/usesensors/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/mipmap-hdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/mipmap-mdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/values-night/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/values/colors.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/values/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/xml/backup_rules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/main/res/xml/data_extraction_rules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/app/src/test/java/com/lzy/usesensors/ExampleUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/UseSensors/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/androidTest/java/com/lzy/file/ExampleInstrumentedTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/java/com/lzy/file/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/mipmap-hdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/mipmap-mdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/values-night/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/values/colors.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/values/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/xml/backup_rules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/main/res/xml/data_extraction_rules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/app/src/test/java/com/lzy/file/ExampleUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Attempt/file/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/androidTest/java/com/lzy/test/ExampleInstrumentedTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/java/com/lzy/test/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/mipmap-hdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/mipmap-mdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/values-night/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/values/colors.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/values/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/xml/backup_rules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/main/res/xml/data_extraction_rules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/app/src/test/java/com/lzy/test/ExampleUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/Test/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Docs/SimWorldUML.object.violet.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../GUI/3dVisualization.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/6.8/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/6.8/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/6.8/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/6.8/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/6.8/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/6.8/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/6.8/javaCompile/classAnalysis.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/6.8/javaCompile/javaCompile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/6.8/javaCompile/taskHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/checksums/md5-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/checksums/sha1-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/configuration-cache/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.gradle/vcs-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.idea/libraries-with-intellij-classes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/build/classes/java/main/TcpClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/build/classes/java/main/TcpServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/build/classes/java/main/TestGson.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/src/main/java/TcpClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/src/main/java/TcpServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Attempt/Gson/src/main/java/TestGson.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Matlab/matlab.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Matlab/matlab.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UML/simworldUML.png" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../../../../Java/apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="D:\Java\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2CO8zRZ11f4dyeVe31mnKOx8Hmm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="应用程序.MainApplication">
+    <configuration name="ChatServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestSocket.ChatServer" />
+      <module name="SimWorld" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TestSocket.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.lzy.simworld.MainApplication" />
+      <module name="SimWorld" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lzy.simworld.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PhoneSensorDataReceiverThread" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.lzy.simworld.PhoneSensorDataReceiverThread" />
+      <module name="SimWorld" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lzy.simworld.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SimCarPhoneCar" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.lzy.simworld.SimCarPhoneCar" />
+      <module name="SimWorld" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lzy.simworld.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WorldMap" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.lzy.simworld.WorldMap" />
+      <module name="SimWorld" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lzy.simworld.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="应用程序.MainApplication" />
+        <item itemvalue="应用程序.WorldMap" />
+        <item itemvalue="应用程序.PhoneSensorDataReceiverThread" />
+        <item itemvalue="应用程序.SimCarPhoneCar" />
+        <item itemvalue="应用程序.ChatServer" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="a983d1b1-f646-459f-8851-59dc28954ee9" name="默认变更列表" comment="" />
+      <created>1658662536863</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1658662536863</updated>
+      <workItem from="1658662540680" duration="3764000" />
+      <workItem from="1658681114439" duration="1223000" />
+      <workItem from="1658712551763" duration="14649000" />
+      <workItem from="1658746176366" duration="2671000" />
+      <workItem from="1658799319256" duration="12995000" />
+      <workItem from="1659107067320" duration="1436000" />
+      <workItem from="1659150808435" duration="11089000" />
+      <workItem from="1660144325196" duration="7319000" />
+      <workItem from="1660231933384" duration="4812000" />
+      <workItem from="1660309597133" duration="16989000" />
+      <workItem from="1660350015783" duration="5736000" />
+      <workItem from="1660665772866" duration="603000" />
+      <workItem from="1660710115872" duration="6109000" />
+      <workItem from="1660834055734" duration="3708000" />
+      <workItem from="1660873210735" duration="9845000" />
+      <workItem from="1660917017222" duration="6158000" />
+      <workItem from="1660954543798" duration="11048000" />
+      <workItem from="1661004824671" duration="1502000" />
+      <workItem from="1661047662772" duration="3779000" />
+      <workItem from="1661051510182" duration="14131000" />
+      <workItem from="1661081985110" duration="10362000" />
+      <workItem from="1661124594544" duration="22128000" />
+      <workItem from="1661182205690" duration="1457000" />
+      <workItem from="1661213447851" duration="12667000" />
+      <workItem from="1661257152515" duration="1383000" />
+      <workItem from="1661258569528" duration="128000" />
+      <workItem from="1661258872345" duration="3468000" />
+      <workItem from="1661352191288" duration="3877000" />
+      <workItem from="1661606634101" duration="2794000" />
+      <workItem from="1661774177602" duration="3172000" />
+      <workItem from="1661817223786" duration="9415000" />
+      <workItem from="1661875316680" duration="975000" />
+      <workItem from="1661909563650" duration="8166000" />
+      <workItem from="1662045222533" duration="1457000" />
+      <workItem from="1662088297895" duration="934000" />
+      <workItem from="1662130389832" duration="4638000" />
+      <workItem from="1662163829374" duration="4157000" />
+      <workItem from="1662185672769" duration="9652000" />
+      <workItem from="1662389816998" duration="4487000" />
+      <workItem from="1662477958605" duration="1646000" />
+      <workItem from="1662547285435" duration="1590000" />
+      <workItem from="1662615253233" duration="29462000" />
+      <workItem from="1662649936415" duration="800000" />
+      <workItem from="1662652159653" duration="1433000" />
+      <workItem from="1662654191171" duration="4820000" />
+      <workItem from="1662678714412" duration="11362000" />
+      <workItem from="1662709017988" duration="2471000" />
+      <workItem from="1662712584171" duration="1105000" />
+      <workItem from="1662860798224" duration="1429000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/lzy/simworld/SimCarPhoneCar.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

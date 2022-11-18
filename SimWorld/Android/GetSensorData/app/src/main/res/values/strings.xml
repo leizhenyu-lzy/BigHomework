@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">GetSensorData</string>
+    <string name="start">START</string>
+    <string name="stop">STOP</string>
+    <string name="serverip">ServerIP:</string>
+    <string name="_127_0_0_1">127.0.0.1</string>
+    <string name="get_phone_sensor_data">GetPhoneSensorData</string>
+    <string name="please_enter_server_ip">Please Enter Server IP</string>
+    <string name="serverport">ServerPort:</string>
+    <string name="_9999">9999</string>
+    <string name="please_enter_server_port">Please Enter Server Port</string>
+    <string name="accelerometer">Accelerometer</string>
+    <string name="rotationangles">RotationAngles</string>
+    <string name="rx">RX</string>
+    <string name="ry">RY</string>
+    <string name="rz">RZ</string>
+    <string name="ax">AX</string>
+    <string name="ay">AY</string>
+    <string name="az">AZ</string>
+    <string name="connect">CONNECT</string>
+    <string name="time">Time</string>
+</resources>

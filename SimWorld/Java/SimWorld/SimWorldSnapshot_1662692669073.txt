@@ -1,0 +1,10 @@
+{"id":"PhoneCar-0","type":0,"color":[],"pathLength":1,"rows":[16000],"cols":[30000]}
+{"id":"VirtualCar-1","type":2,"color":[223, 188, 151],"pathLength":5,"rows":[20, 20, 20, 19, 18],"cols":[29, 29, 30, 30, 30]}
+{"id":"VirtualCar-2","type":2,"color":[248, 172, 36],"pathLength":5,"rows":[14, 14, 14, 15, 16],"cols":[6, 6, 5, 5, 5]}
+{"id":"VirtualCar-3","type":2,"color":[239, 168, 245],"pathLength":5,"rows":[20, 20, 19, 18, 17],"cols":[5, 5, 5, 5, 5]}
+{"id":"VirtualCar-4","type":2,"color":[133, 82, 213],"pathLength":5,"rows":[14, 14, 14, 14, 14],"cols":[8, 8, 7, 6, 5]}
+{"id":"PhoneCar-0","type":0,"color":[],"pathLength":0,"rows":[],"cols":[]}
+{"id":"VirtualCar-1","type":2,"color":[223, 188, 151],"pathLength":5,"rows":[17, 16, 15, 14, 13],"cols":[30, 30, 30, 30, 30]}
+{"id":"VirtualCar-2","type":2,"color":[248, 172, 36],"pathLength":5,"rows":[17, 18, 19, 20, 20],"cols":[5, 5, 5, 5, 6]}
+{"id":"VirtualCar-3","type":2,"color":[239, 168, 245],"pathLength":5,"rows":[16, 15, 14, 13, 12],"cols":[5, 5, 5, 5, 5]}
+{"id":"VirtualCar-4","type":2,"color":[133, 82, 213],"pathLength":5,"rows":[15, 16, 17, 18, 19],"cols":[5, 5, 5, 5, 5]}

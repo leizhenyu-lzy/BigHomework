@@ -1,0 +1,54 @@
+//6
+
+randomForestGini = RandomForestClassifier(n_jobs=8, random_state=42, n_estimators=150, criterion='gini')
+randomForestEntropy = RandomForestClassifier(n_jobs=8, random_state=42, n_estimators=150, criterion='entropy')
+randomForestGini在valDataset准确度 0.5476022566995769
+randomForestGini在valProcessedDataset准确度 0.5412552891396333
+randomForestEntropy在valDataset准确度 0.5430183356840621
+randomForestEntropy在valProcessedDataset准确度 0.5440761636107193
+
+
+randomForestGini = RandomForestClassifier(n_jobs=8, random_state=42, n_estimators=100, criterion='gini')
+randomForestEntropy = RandomForestClassifier(n_jobs=8, random_state=42, n_estimators=100, criterion='entropy')
+randomForestGini在valDataset准确度 0.5493653032440057
+randomForestGini在valProcessedDataset准确度 0.5405500705218618
+randomForestEntropy在valDataset准确度 0.5423131170662906
+randomForestEntropy在valProcessedDataset准确度 0.5384344146685472
+
+
+randomForestGini = RandomForestClassifier(n_jobs=8, random_state=42, n_estimators=200, criterion='gini')
+randomForestEntropy = RandomForestClassifier(n_jobs=8, random_state=42, n_estimators=200, criterion='entropy')
+randomForestGini在valDataset准确度 0.5500705218617772
+randomForestGini在valProcessedDataset准确度 0.5447813822284908
+randomForestEntropy在valDataset准确度 0.5401974612129761
+randomForestEntropy在valProcessedDataset准确度 0.5472496473906912
+
+
+//8
+
+randomForestGini = RandomForestClassifier(n_jobs=8, random_state=42, n_estimators=150, criterion='gini')
+randomForestEntropy = RandomForestClassifier(n_jobs=8, random_state=42, n_estimators=150, criterion='entropy')
+randomForestGini在valDataset准确度 0.5578279266572638
+randomForestGini在valProcessedDataset准确度 0.5317348377997179
+randomForestEntropy在valDataset准确度 0.5479548660084627
+randomForestEntropy在valProcessedDataset准确度 0.5518335684062059
+
+
+randomForestGini = RandomForestClassifier(n_jobs=8, random_state=42, n_estimators=100, criterion='gini')
+randomForestEntropy = RandomForestClassifier(n_jobs=8, random_state=42, n_estimators=100, criterion='entropy')
+randomForestGini在valDataset准确度 0.5535966149506347
+randomForestGini在valProcessedDataset准确度 0.5299717912552891
+randomForestEntropy在valDataset准确度 0.5500705218617772
+randomForestEntropy在valProcessedDataset准确度 0.5479548660084627
+
+
+randomForestGini = RandomForestClassifier(n_jobs=8, random_state=42, n_estimators=200, criterion='gini')
+randomForestEntropy = RandomForestClassifier(n_jobs=8, random_state=42, n_estimators=200, criterion='entropy')
+randomForestGini在valDataset准确度 0.5606488011283498
+randomForestGini在valProcessedDataset准确度 0.5419605077574048
+randomForestEntropy在valDataset准确度 0.5546544428772919
+randomForestEntropy在valProcessedDataset准确度 0.5490126939351199
+
+t1 = pd.read_csv("./Dataset/test_result.csv", header=0,index_col=0).values
+t2 = pd.read_csv("./Dataset/testpp.csv", header=0,index_col=0).values
+accuracy_score(t1,t2)

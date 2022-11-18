@@ -1,0 +1,11 @@
+HarrisCorner
+
+g++ HarrisCorner.cpp -o harris -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc
+./harris
+
+
+
+FastCorner
+
+g++ FASTCorner.cpp -o fast -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc
+./fast

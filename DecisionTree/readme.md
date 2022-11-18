@@ -23,7 +23,7 @@
 | 4 | SavedDecisionTree|保存的决策树图片以及混淆矩阵图片|
 | 5 | DatasetClass.py|数据集类|
 | 6 | DecisionTreeNodeClass.py|决策树节点类|
-| 7 | DecisionVisualize.py|决策树可视化函数|
+| 7 | DecisionTreeVisualize.py|决策树可视化函数|
 | 8 | GenerateDecisionTree.py|生成决策树函数|
 | 9 | readme.md|本.md文件|
 |10 | UserToolFunction.py|存放一些通用函数和常量定义|
@@ -217,7 +217,7 @@ global_node_id = 0  # 类共享变量（在有新treenode创建时会自增）
 在该文件的__main__函数中，我将整个决策树生成即可视化进行串联。即==可以运行该main函数根据给定数据集训练出相应决策树==。（**注意，由于西瓜数据集过于简单，我并没有进行train、test的拆分，我另外添加了一个鸢尾花数据集（IRIS）进行了拆分。**）
 
 
-## DecisionVisualize.py
+## DecisionTreeVisualize.py
 文件结构如下：
 ![](ReadmePics/visualizepy001.png)
 

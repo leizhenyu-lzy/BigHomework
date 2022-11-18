@@ -1,0 +1,5 @@
+{"id":"VirtualCar-1","type":2,"color":[47, 206, 154],"pathLength":5,"rows":[13, 13, 12, 12, 12],"cols":[12, 12, 12, 13, 14]}
+{"id":"VirtualCar-2","type":2,"color":[165, 172, 68],"pathLength":5,"rows":[3, 3, 3, 3, 3],"cols":[8, 8, 9, 10, 11]}
+{"id":"VirtualCar-3","type":2,"color":[165, 3, 61],"pathLength":5,"rows":[6, 6, 6, 6, 6],"cols":[1, 1, 2, 3, 4]}
+{"id":"VirtualCar-4","type":2,"color":[17, 173, 116],"pathLength":5,"rows":[20, 20, 20, 20, 20],"cols":[17, 17, 16, 15, 14]}
+{"id":"VirtualCar-4","type":2,"color":[17, 173, 116],"pathLength":10,"rows":[20, 20, 20, 20, 20,20,20,20,20,20],"cols":[17, 17, 16, 15, 14,13,12,11,10,9]}
